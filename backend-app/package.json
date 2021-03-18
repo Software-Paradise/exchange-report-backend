@@ -4,12 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "lint": "eslint . --fix --ext .js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^7.4.2",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -19,10 +21,14 @@
     "mysql-utilities": "^1.1.2",
     "mysql2": "^2.2.5",
     "querystring": "^0.2.1",
-    "sequelize": "^6.5.1"
+    "sequelize": "^6.5.1",
+    "standard": "^16.0.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.7",
     "sequelize-cli": "^6.2.0"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/standard/eslintrc.json"
   }
 }
