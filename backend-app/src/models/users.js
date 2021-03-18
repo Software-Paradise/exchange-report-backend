@@ -1,14 +1,15 @@
-'use strict';
-const { Model} = require('sequelize');
+'use strict'
+const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class users extends Model {
-    
-    static associate(models) {
-      // define association here
+    static associate (models) {
+      users.hasMany(models.wallet, {
+        foreignKey: 'id_user'
+      })
     }
   };
   users.init({
-    id: {
+    id_user: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
@@ -37,14 +38,18 @@ module.exports = (sequelize, DataTypes) => {
     },
     password: {
       allowNull: false,
-      type: DataTypes.STRING(255),
+      type: DataTypes.STRING(255)
+    },
+    reset_password: {
+      allowNull: true,
+      type: DataTypes.STRING(255)
     }
-  }, 
+  },
   {
     sequelize,
     modelName: 'users',
     freezeTableName: true,
     timestamps: false
-  });
-  return users;
-};
+  })
+  return users
+}
