@@ -5,6 +5,12 @@ module.exports = (app) => {
    
     app.use('/auth', router)
 
+    /** 
+     * User Login Route
+     * @route {POST} /auth/login
+     * @authentication Esta ruta no requiere authenticacion basica HTTP
+     * 
+    */
     router.post('/login', async (req, res)=>{
         let credential={
             email: req.body.email,
@@ -20,6 +26,12 @@ module.exports = (app) => {
         }
     })
 
+    /** 
+     * User Login Route
+     * @route {POST} /auth/register
+     * @authentication Esta ruta no requiere authenticacion basica HTTP
+     * 
+    */
     router.post('/register', async (req, res)=>{
         let user={
             username: req.body.username,

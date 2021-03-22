@@ -1,18 +1,18 @@
 const jwt = require('jsonwebtoken')
-require('dotenv').config()
+const {JWT_SECRET} = require('../../config/vars.config')
 
 module.exports = (req, res, next) => {
   if (!req.headers.authorization) {
     return res
       .status(403)
-      .json({ message: 'Access denied, no token provided', success: false })
+      .json({ message: 'Acceso denegado, la peticion no posee token de verificacion', success: false })
   }
 
   const token = req.headers.authorization.split(' ')[1]
 
   jwt.verify(
     token,
-    process.env.JWT_SECRET_KEY,
+    JWT_SECRET,
 
     (error, decode) => {
       if (!error) {
