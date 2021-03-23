@@ -1,12 +1,17 @@
 {
-    "source":{
-        "include": ["controllers", "models", "middlewares"],
-        "includePattern": ".js$",
-        "excludePattern": "(node_modules/|docs)"
+    "tags": {
+        "allowUnknownTags": true,
+        "dictionaries": ["jsdoc","closure"]
     },
-    "plugins": ["plugins/markdown"],
+    "source":{
+        "include": ["api"],
+        "exclude": [ "node_modules" ],
+        "includePattern": ".+\\.js(doc|x)?$",
+        "excludePattern": "(^|\\/|\\\\)_"
+    },
+    "plugins": ["plugins/markdown", "jsdoc-route-plugin"],
     "templates":{
-        "cleverLinks": true,
+        "cleverLinks": false,
         "monospaceLinks": true
     },
     "opts":{

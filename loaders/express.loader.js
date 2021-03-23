@@ -28,7 +28,7 @@ module.exports = async (app) => {
 
     // config routes
     app.get('/', async (_, res) => res.send(await publicIp.v4()))
-    app.use('/api', routes())
+    app.use('/api/alyexchange', routes())
     
 
     return app

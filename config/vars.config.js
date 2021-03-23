@@ -15,5 +15,13 @@ module.exports = {
         DIALECT: process.env.DBDIALECT || 'mysql',
     },
     MAILGUN_APIKEY: process.env.MAILGUN_APIKEY,
-    MAILGUN_DOMAIN: process.env.MAILGUN_DOMAIN
+    MAILGUN_DOMAIN: process.env.MAILGUN_DOMAIN,
+
+    EMAIL: {
+        API_URL : process.env.API_URL,
+        EMAIL_FROM : process.env.EMAIL_FROM, 
+        EMAIL_TO : process.env.EMAIL_TO,
+        SUBJECT : process.env.SUBJECT
+    },
+    
 }
