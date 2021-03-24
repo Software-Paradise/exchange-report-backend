@@ -2,6 +2,8 @@ const express = require('express')
 const loaders = require('./loaders')
 const { vars, db } = require('./config/index')
 
+const message = `Regenerar rama develop en repositorio`
+
 async function startServer() {
     const app = express()
 
