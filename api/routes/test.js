@@ -25,7 +25,7 @@ module.exports = (app) => {
 
   /** 
      * Ruta de prueba de envio de correos a la cuenta de un usuario
-     * @route {GET} /test/index
+     * @route {GET} /test/sendmail
      * @authentication Requiere Middleware de autenticacion
      * 
     */
@@ -41,7 +41,7 @@ module.exports = (app) => {
   
   /** 
      * Ruta de prueba del enlace que se envio al correo del usuario
-     * @route {GET} /test/index
+     * @route {GET} /test/saludar
      * @authentication Esta ruta no requiere authenticacion basica HTTP
      * 
     */
@@ -52,18 +52,44 @@ module.exports = (app) => {
 
   /** 
      * Ruta de prueba para generacion de archivos pdf
-     * @route {GET} /test/index
+     * @route {GET} /test/generate/pdf
      * @authentication Esta ruta no requiere authenticacion basica HTTP
      * 
     */
   router.get('/generate/pdf', async (_,res)=>{
 
     const pathTemplate = path.resolve('./templates', 'testTemplate.hbs');
+    
     const {success, message, name} = await  pdfController.generatePDF(pathTemplate,{});
     if(success){
       res.json({message}).status(200)
     }else res.json({message}).status(400)
 
+  })
+
+
+  /** 
+     * Ruta de prueba para generacion y envio de archivos pdf
+     * @route {GET} /test/sendmail/pdf
+     * @authentication Esta ruta no requiere authenticacion basica HTTP
+     * 
+    */
+  router.get('/sendmail/pdf', async (_, res) => {
+
+      const data = {
+        from: 'test@alyexchange.com',
+        to: 'alekzander86@hotmail.es',
+        subject: 'correo de prueba de envio de adjunto'
+      }
+
+      const pathTemplate = path.resolve('./templates', 'testTemplate.hbs');
+      
+      const {success, message} = await sendMailController.emailPDFAttachment(pathTemplate, data, {})
+      
+      if(success) res.json({message, success}).status(200)
+      else res.json({message, success}).status(400)
+      
+    
   })
 
 };
