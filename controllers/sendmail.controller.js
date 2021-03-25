@@ -1,31 +1,39 @@
-const {emailTemplate} = require('../config/template.config')
-const {test} = require('../templates/mail.templates');
-const nodemailer = require('nodemailer')
-const mailgun = require('nodemailer-mailgun-transport')
+const {generateTemplate} = require('../config/template.config')
 const log = require("../logs/index");
-const { MAILGUN_APIKEY, MAILGUN_DOMAIN, EMAIL } = require("../config/vars.config")
+const email = require('../config/email.config')
+const path = require('path')
 
-/**CREAR TRASNPORT*/
-const transporter = nodemailer.createTransport(mailgun({
-    auth: {
-        api_key: MAILGUN_APIKEY,
-        domain: MAILGUN_DOMAIN
-    }
-}))
+const pathErrorTemplate = path.resolve('./templates', 'errorTemplate.hbs');
 
+/**
+ * @module sendMailController - controlador de envio de correos a usuarios
+ */
 const sendMailController = {
-    sendMailTest : async ()=>{
-        const {html} =  emailTemplate(test(), {name: 'Lucas Andres Marsell', url: `${EMAIL.API_URL}/api/test/saludar`})
+    
+    /**
+     * @param {Object} data - Objeto { destinatario | remitente | asunto } del Correo - { path | contexto }  del template que se va emplear en el envio
+     * @returns {string} Mensaje
+     * @returns {boolean} estado del proceso 
+     */
+    generateEmail : async ({data, pathTemplate, context})=>{
+        
+        let templateStr;
+            if(pathTemplate) templateStr = readFileSync(pathTemplate).toString('utf8')
+            else templateStr = readFileSync(pathErrorTemplate).toString('utf8')
+
+        const {from, to, subject} = data;
+        
+        const {html} = generateTemplate(templateStr, {context})
             
         let emailData = {
-            from: EMAIL.EMAIL_FROM,
-            to: EMAIL.EMAIL_TO,
-            subject: EMAIL.SUBJECT,
+            from,
+            to,
+            subject,
             html
         }
 
         try {
-           let info = await transporter.sendMail(emailData);
+           let info = await email.sendMail(emailData);
            return ({success: true, message: `Mensaje enviado`, info});
         } catch (error) {
             log(`send-email.config.js | ${error}`)

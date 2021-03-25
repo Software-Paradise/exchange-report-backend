@@ -2,10 +2,20 @@ const {usersController} = require('../../controllers/index')
 const {authentication} = require('../middlewares/index');
 const router = require('express').Router();
 
+/**
+ * 
+ * @param {*} app Instancia del Framework Express
+ */
 module.exports = (app)=>{
 
     app.use('/users', router);
 
+    /** 
+     * Wallet list Route
+     * @route {GET} /users/list
+     * @authentication Esta requiere autenticacion de token 
+     * 
+    */
     router.get('/list', authentication ,async (_, res)=>{
         const {users} = await usersController.listUsers()
         if(users){

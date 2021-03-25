@@ -4,13 +4,26 @@ const jwt = require('jsonwebtoken')
 const userModel = db.users
 const { JWT_SECRET} = require("../config/vars.config")
 
+/**
+ * @module userController - controlador de cuentas de usuario
+ */
 const userController = {
   
+  /**
+   * 
+   * @returns {Object} Objeto con todos los usuario encontrados
+   */
   listUsers: async () => {
     const users = await userModel.findAll({})
     return ({users})
   },
 
+  /**
+   * 
+   * @param {Object} data Objeto que contiene los datos del usuario que se va registrar
+   * @returns {boolean} Retorna el estado de la solicitud al controlador
+   * @returns {string} Retorna un mensaje
+   */
   register:  async (data) => {
 
     let user = await userModel.findAll({where: {email: data.email}})
@@ -37,6 +50,12 @@ const userController = {
   
   },
 
+
+  /**
+   * 
+   * @param {Object} credential - Objeto que contiene las credenciales del usuario
+   * @returns {Object}  Objeto que contiene los atributos del usuario (verificado) y el token de sesion
+   */
   login: async (credential) => {
     
     const user = await userModel.findAll({ where: { email: credential.email } })

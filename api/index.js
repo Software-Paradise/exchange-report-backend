@@ -5,6 +5,10 @@ const coins = require('./routes/coins')
 const wallets = require('./routes/wallets');
 const express = require('express');
 
+/**
+ * 
+ * @returns - Instancia de Express
+ */
 const routes = () => {
 	const app = express();
 	auth(app);
