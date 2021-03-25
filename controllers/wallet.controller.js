@@ -3,8 +3,18 @@ const walletModel = db.wallet
 const userModel = db.users
 const typeCoindModel = db.type_coin
 
+
+/**
+ * @module walletController - - controlador de billeteras de usuario
+ */
 const walletController = {
   
+  /**
+   * 
+   * @returns {Array} Retorna un arreglo con todos los Wallets
+   * @return {boolean} Retorna el estado de la solicitud al controlador
+   * @return {string} Retorna un mensaje
+   */
   listWallets: async () => {
 
     try { 
@@ -27,6 +37,12 @@ const walletController = {
 
   },
 
+  /**
+   * 
+   * @param {Object} wallet Objeto que contiene los datos del wallet que se va registrar
+   * @returns {boolean} Retorna el estado de la solicitud al controlador
+   * @returns {string} Retorna un mensaje
+   */
   create: async (wallet) => {
     
     try {

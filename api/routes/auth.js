@@ -1,6 +1,11 @@
 const {usersController} = require('../../controllers/index')
 const router = require('express').Router();
 
+/**
+ * 
+ * @param {*} app - Instancia del Framework de Express
+ * @property
+ */
 module.exports = (app) => {
    
     app.use('/auth', router)
@@ -27,7 +32,7 @@ module.exports = (app) => {
     })
 
     /** 
-     * User Login Route
+     * User Register Route
      * @route {POST} /auth/register
      * @authentication Esta ruta no requiere authenticacion basica HTTP
      * 

@@ -2,9 +2,20 @@ const router = require('express').Router();
 const {coinsController} = require('../../controllers/index')
 const {authentication} = require('../middlewares/index');
 
+/**
+ * 
+ * @param {*} app Instancia del Framework Express
+ */
 module.exports = (app)=>{
     app.use('/coins', router);
 
+
+    /** 
+     * Coin List Route
+     * @route {GET} /coins/list
+     * @authentication Esta requiere autenticacion de token 
+     * 
+    */
     router.get('/list/', authentication, async (_, res)=>{
         const {success, message, typeCoin} = await coinsController.listCoin()
         if(success){
@@ -14,6 +25,12 @@ module.exports = (app)=>{
         }
     })
     
+    /** 
+     * Coin Create Route
+     * @route {POST} /coins/list
+     * @authentication Esta requiere autenticacion de token 
+     * 
+    */
     router.post('/create', authentication, async (req, res)=>{
         
         const newCoin = {

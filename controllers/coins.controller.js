@@ -1,7 +1,15 @@
 const db = require('../models')
 const typeCoinModel = db.type_coin
 
+/**
+ * @module typeCoinController - controlador de tipos de cripto monedas
+ */
 const typeCoinController = {
+
+  /**
+   * 
+   * @returns {Object} - success: estado de la consulta | typeCoin: tipos de cripto monedas
+   */
   listCoin: async () => {
     const typeCoin = await typeCoinModel.findAll({})
     if (typeCoin) {
@@ -11,6 +19,10 @@ const typeCoinController = {
     }
   },
 
+  /**
+   * 
+   * @param {Object} coin - Objeto que contiene los datos de la cripto moneda que se va registrar 
+   */
   create: async (coin) => {
     try {
       const newcoin = await typeCoinModel.create(coin)
