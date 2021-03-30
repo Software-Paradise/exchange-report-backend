@@ -1,8 +1,11 @@
 const { urlencoded, json } = require('express')
+const morgan = require('morgan')
 const cors = require('cors')
 const helmet = require('helmet')
 const publicIp = require('public-ip')
-const routes = require("../api")
+const routes = require('../api')
+const { sequelizeConfig } = require('../config/index')
+const db = require('../models')
 
 /**
  * Configure a express instance
@@ -11,25 +14,26 @@ const routes = require("../api")
  * @return {Express} app
  */
 module.exports = async (app) => {
-    // If not app, calcel rest execution
-    if (!app) {
-        console.log('not app')
-        return null
-    }
+  // If not app, calcel rest execution
+  if (!app) {
+    console.log('not app')
+    return null
+  }
 
-    app.enable('trust proxy')
+  app.enable('trust proxy')
 
-    // config middlewares
-    app.use(helmet())
-    app.use(cors({ origin: '*' }))
-    app.use(json())
-    app.use(urlencoded({ extended: false }))
-    app.use(require('morgan')('dev'))
+  // config middlewares
+  app.use(helmet())
+  app.use(cors({ origin: '*' }))
+  app.use(json())
+  app.use(urlencoded({ extended: false }))
+  app.use(morgan('dev'))
 
-    // config routes
-    app.get('/', async (_, res) => res.send(await publicIp.v4()))
-    app.use('/api/alyexchange', routes())
-    
+  // config routes
+  app.get('/', async (_, res) => res.send(await publicIp.v4()))
+  app.use('/api/alyexchange', routes())
 
-    return app
+  db.initDataBase(sequelizeConfig)
+
+  return app
 }

@@ -1,22 +1,14 @@
-const test = require('./routes/test');
-const auth = require('./routes/auth');
-const users = require('./routes/users');
-const coins = require('./routes/coins')
-const wallets = require('./routes/wallets');
-const express = require('express');
+const test = require('./routes/test')
+const express = require('express')
 
 /**
- * 
+ *
  * @returns - Instancia de Express
  */
 const routes = () => {
-	const app = express();
-	auth(app);
-	test(app);
-	users(app);
-	coins(app);
-	wallets(app);
-	return app
+  const app = express()
+  test(app)
+  return app
 }
 
-module.exports = routes;
+module.exports = routes

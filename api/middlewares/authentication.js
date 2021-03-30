@@ -1,25 +1,14 @@
 const jwt = require('jsonwebtoken')
-const {JWT_SECRET} = require('../../config/vars.config')
+const { ACCESS_TOKEN_SECRET } = require('../../config/vars.config')
 
 module.exports = (req, res, next) => {
-  if (!req.headers.authorization) {
-    return res
-      .status(403)
-      .json({ message: 'Acceso denegado, la peticion no posee token de verificacion', success: false })
-  }
+  const authHeader = req.headers.authorization
+  const token = authHeader && authHeader.split(' ')[1]
 
-  const token = req.headers.authorization.split(' ')[1]
+  if (token == null) return res.json({ success: false, message: 'La peticion no contiene un token de acceso' }).status(401)
 
-  jwt.verify(
-    token,
-    JWT_SECRET,
-
-    (error, decode) => {
-      if (!error) {
-        next()
-      } else {
-        res.status(400).json({ message: error.message, success: false })
-      }
-    }
-  )
+  jwt.verify(token, ACCESS_TOKEN_SECRET, (err, _) => {
+    if (err) return res.json({ message: 'El token no es valido', success: false }).status(403)
+    res.next()
+  })
 }
