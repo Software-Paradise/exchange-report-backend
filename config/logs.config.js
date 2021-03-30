@@ -11,18 +11,18 @@ const logFilePath = './logs/logs.log'
  * @param {String} type
  */
 module.exports = function (errorMessage = '', type = 'error') {
-    /**
+  /**
      * Capture filename where log function is called
      */
-    const { 2: stack } = new Error().stack.split('\n')
-    const stackfile = stack.slice(
-        stack.lastIndexOf('(') + 1,
-        stack.lastIndexOf('.js') + 3
-    )
-    const filename = path.basename(stackfile)
+  const { 2: stack } = new Error().stack.split('\n')
+  const stackfile = stack.slice(
+    stack.lastIndexOf('(') + 1,
+    stack.lastIndexOf('.js') + 3
+  )
+  const filename = path.basename(stackfile)
 
-    // create log instance
-    const log = createSimpleLogger({ logFilePath })
+  // create log instance
+  const log = createSimpleLogger({ logFilePath })
 
-    log.log(type, `${NOW()} | ${filename} | ${errorMessage}`)
+  log.log(type, `${NOW()} | ${filename} | ${errorMessage}`)
 }
