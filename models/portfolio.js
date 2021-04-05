@@ -1,41 +1,41 @@
 'use strict'
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('bo_wallet', {
+  return sequelize.define('portfolio', {
 
-    IDBO_WALLET: {
+    IDPORTFOLIO: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: DataTypes.INTEGER
     },
-    FK_BO_USER: {
+    FK_PROFILE: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      unique: true,
       primaryKey: true,
       references: {
-        model: 'bo_user',
-        key: 'IDBO_USER',
-        as: 'FK_BO_USER'
+        model: 'profile',
+        key: 'IDPROFILE',
+        // key: 'IDPROFILE',
+        as: 'FK_PROFILE'
       },
       onDelete: 'RESTRICT',
       onUpdate: 'CASCADE'
     },
-    FK_WALLET_CURRENCY: {
+    FK_MODULE: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       references: {
-        model: 'coin',
-        key: 'IDCOIN',
-        as: 'FK_WALLET_CURRENCY'
+        model: 'modalex',
+        key: 'IDMODALEX',
+        as: 'FK_MODULE'
       },
       onDelete: 'RESTRICT',
       onUpdate: 'CASCADE'
     }
   },
   {
-    modelName: 'bo_wallet',
+    modelName: 'portfolio',
     freezeTableName: true,
     timestamps: false
   }

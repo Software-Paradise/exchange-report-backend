@@ -30,7 +30,7 @@ module.exports = {
 
     /** BO_USER ***********************************************************************************/
     db.bo_user.belongsTo(db.commerce, { foreignKey: 'FK_COMMERCE' })
-    db.bo_user.belongsTo(db.type_user, { foreignKey: 'FK_TYPE_USER' })
+    db.bo_user.belongsTo(db.profile, { foreignKey: 'FK_PROFILE' })
     db.bo_user.hasOne(db.bo_wallet, { foreignKey: 'FK_BO_USER' })
     db.bo_user.hasOne(db.commerce_representative_info, { foreignKey: 'FK_BO_USER' })
     db.bo_user.hasMany(db.transaction, { foreignKey: 'FK_BO_USER' })
@@ -42,7 +42,7 @@ module.exports = {
     /** ****************************************************************************************** */
 
     /** COMMERCER********************************************************************************* */
-    db.commerce.hasOne(db.bo_user, { foreignKey: 'FK_COMMERCE' })
+    db.commerce.hasMany(db.bo_user, { foreignKey: 'FK_COMMERCE' })
     db.commerce.hasOne(db.commerce_info_kyc, { foreignKey: 'FK_COMMERCE' })
     /** ****************************************************************************************** */
 
@@ -65,16 +65,11 @@ module.exports = {
     db.coin.hasMany(db.history_transaction, { foreignKey: 'COIN_FROM' })
     /** ****************************************************************************************** */
 
-    /** CUSTOMER_HAS_DOCUMENT********************************************************************* */
-    db.customer_has_document.belongsTo(db.customer, { foreignKey: 'FK_CUSTOMER' })
-    db.customer_has_document.belongsTo(db.type_document, { foreignKey: 'FK_TYPEDOC' })
-    /** ****************************************************************************************** */
-
     /** CUSTOMER********************************************************************************** */
     db.customer.hasOne(db.customer_info_kyc, { foreignKey: 'FK_CUSTOMER' })
     db.customer.hasOne(db.customer_wallet, { foreignKey: 'FK_CUSTOMER' })
     db.customer.hasMany(db.transaction, { foreignKey: 'FK_CUSTOMER' })
-    db.customer.hasMany(db.customer_has_document, { foreignKey: 'FK_CUSTOMER' })
+    db.customer.belongsToMany(db.type_document, { through: 'customer_has_document', as: 'customerhavedocuments', foreignKey: 'FK_CUSTOMER' })
     /** ****************************************************************************************** */
 
     /** CUSTOMER_INFO_KYC************************************************************************* */
@@ -85,6 +80,24 @@ module.exports = {
     db.customer_wallet.belongsTo(db.customer, { foreignKey: 'FK_CUSTOMER' })
     db.customer_wallet.belongsTo(db.coin, { foreignKey: 'FK_WALLET_CURRENCY' })
     /** ****************************************************************************************** */
+
+    /** MODALEX**************************************************************************************/
+    db.modalex.hasMany(db.portfolio, { foreignKey: 'FK_MODULE' })
+    /** *********************************************************************************************/
+
+    /** PORTFOLIO_HAS_PERMISSION*********************************************************************/
+    db.permission.belongsToMany(db.portfolio, { through: 'portfolio_has_permission', as: 'portfoliohavepermissions', foreignKey: 'FK_PERMISSION' })
+    /** *********************************************************************************************/
+
+    /** PORTFOLIO ***********************************************************************************/
+    db.portfolio.belongsTo(db.profile, { foreignKey: 'FK_PROFILE' })
+    db.portfolio.belongsTo(db.modalex, { foreignKey: 'FK_MODULE' })
+    db.portfolio.belongsToMany(db.permission, { through: 'portfolio_has_permission', as: 'permissionshaveportfolio', foreignKey: 'FK_PORTFOLIO' })
+
+    /** PROFILE**************************************************************************************/
+    db.profile.hasMany(db.bo_user, { foreignKey: 'FK_PROFILE' })
+    db.profile.hasMany(db.portfolio, { foreignKey: 'FK_PROFILE' })
+    /** *********************************************************************************************/
 
     /** HISTORY_TRANSACTION*********************************************************************** */
     db.history_transaction.belongsTo(db.transaction, { foreignKey: 'FK_TRANSACTION' })
@@ -110,11 +123,7 @@ module.exports = {
     /** ***************************************************************************************** */
 
     /** TYPE_DOCUMENT***************************************************************************** */
-    db.type_document.hasMany(db.customer_has_document, { foreignKey: 'FK_TYPEDOC' })
-    /** ****************************************************************************************** */
-
-    /** TYPE_USER********************************************************************************* */
-    db.type_user.hasMany(db.bo_user, { foreignKey: 'FK_TYPE_USER' })
+    db.type_document.belongsToMany(db.customer, { through: 'customer_has_document', as: 'documentshavecustomer', foreignKey: 'FK_TYPEDOC' })
     /** ****************************************************************************************** */
 
     await sequelize.sync({ alter: false }).then(() => {

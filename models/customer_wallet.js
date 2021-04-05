@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     FK_CUSTOMER: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      unique: true,
       primaryKey: true,
       references: {
         model: 'customer',

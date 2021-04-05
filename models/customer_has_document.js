@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     FK_CUSTOMER: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
+      // primaryKey: true,
       references: {
         model: 'customer',
         key: 'IDCUSTOMER',
@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     FK_TYPEDOC: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
+      // primaryKey: true,
       references: {
         model: 'type_document',
         key: 'IDTYPE_DOC',

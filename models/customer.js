@@ -29,8 +29,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     CREATED_AT: DataTypes.DATE,
     UPDATED_AT: DataTypes.DATE,
-    IS_ACTIVE: DataTypes.BOOLEAN,
-    IS_VERIFIED: DataTypes.BOOLEAN
+    IS_VERIFIED: DataTypes.BOOLEAN,
+    IS_ACTIVE: DataTypes.BOOLEAN
   },
   {
     modelName: 'customer',

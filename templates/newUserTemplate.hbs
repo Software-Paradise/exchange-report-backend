@@ -1,0 +1,265 @@
+<style type="text/css">
+    
+    *, ::after, ::before {
+        box-sizing: border-box;
+    }
+ 
+    .portrait {
+        width: 8.3in;
+        height: 10.8.0in;
+    }
+
+    body{
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .container {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    
+    .header{
+        border: 1px solid #161d29;
+        padding: 0.02rem 0rem;
+        background-color: #161d29;
+        border-radius: 10px;
+    }
+    .title {
+        font-family: 'Roboto', sans-serif;
+        color: #ffffff;
+        text-align: center;
+        margin: 0.15rem 0rem;
+    }
+    .card {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: 
+    #fff;
+    background-clip: border-box;
+    border: 1px solid
+        rgba(0,0,0,.125);
+        border-radius: .25rem;
+    }
+    .card-header:first-child {
+        border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+    }
+    .card-header {
+        padding: .5rem 1.25rem;
+        margin-bottom: 0;
+        background-color: rgba(0,0,0,.03);
+        border-bottom: 1px solid rgba(0,0,0,.125);
+        font-size: 0.8rem;
+    }
+    .card-body {
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        padding: 1.0rem;
+        color: rgb(38, 56, 94);
+    }
+
+    .row {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+
+    .col-1{
+         -ms-flex: 0 0 8.333333%;
+        flex: 0 0 8.333333%;
+        max-width: 8.333333%;
+    }
+
+    .col-2{
+         -ms-flex: 0 0 16.666666%;
+        flex: 0 0 16.666666%;
+        max-width: 16.666666%;
+    }
+
+    .col-3{
+         -ms-flex: 0 0 25%;
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+
+    .col-4 {
+        -ms-flex: 0 0 33.333333%;
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+    }
+    
+    .col-6 {
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .col-8 {
+        -ms-flex: 0 0 66.666666%;
+        flex: 0 0 66.666666%;
+        max-width: 66.666666%;
+    }
+
+    .col-10{
+         -ms-flex: 0 0 83.333333%;
+        flex: 0 0 83.333333%;
+        max-width: 83.333333%;
+    }
+
+    .col-12 {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+        position: relative;
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    .px-1 {
+        padding-right: 0.3rem;
+        padding-left: 0.3rem;
+    }
+
+    .px-2 {
+        padding-right: 0.67rem;
+        padding-left: 0.67rem;
+    }
+
+    .px-3 {
+        padding-right: 1rem;
+        padding-left: 1rem;
+    }
+
+    .my-1{
+        margin-top: 0.33rem;
+        margin-bottom: 0.33rem;
+    }
+    .my-2{
+        margin-top: 0.66rem;
+        margin-bottom: 0.66rem;
+    }
+    .my-3{
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+    .mx-1{
+        margin-left: 0.33rem;
+        margin-right: 0.33rem;
+    }
+    .mx-2{
+        margin-left: 0.66rem;
+        margin-right: 0.66rem;
+    }
+    .mx-3{
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+    .text-center{
+        text-align: center;
+    }
+
+    .bg-primary {
+        background-color: 
+        #161d29 !important;
+    }
+
+    .text-white {
+        color: 
+        #fff !important;
+    }
+
+    .list-group {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        padding-left: 0;
+        margin-bottom: 0;
+    }
+    dl, ol, ul {
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+    .list-group-flush .list-group-item {
+        border-right: 0;
+        border-left: 0;
+        border-radius: 0;
+    }
+    .list-group-item {
+        position: relative;
+        display: block;
+        padding: .50rem 1rem;
+        margin-bottom: -1px;
+        background-color: #fff;
+        border: 1px solid rgba(0,0,0,.125);
+        color: rgb(82, 95, 112);
+        font-size: 0.75rem;
+    }
+    
+    .credentials{
+        font-size: 1.2rem;
+        color: #f8b422 !important;
+        text-align: center;
+    }
+</style>
+<div class="">
+    <div class="header">
+        <h2 class="title">AlyExchange</h2>
+    </div>
+    <div class="row my-2">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <div class="card">
+                <div class="card-body">
+                    <h4>Estimado, {{FULLNAME}}.</h4> 
+                    <p>
+                        En hora buena ha sido habilitada tu cuenta en nuestra aplicacion AlyExchange, 
+                        ahora ya podras ver el detalle de tus transacciones y generar reportes en formato
+                        pdf que seran enviados a tu correo.
+                    </p>
+                    <p>
+                        Para poder iniciar por favor, introduce tus credenciales en el formulario de inicio 
+                        de sesion, haciendo clic en el siguiente enlace:
+                    </p>
+                    <a href='{{URL}}'>Haga clic en este enlace para iniciar sesion en AlyExchange</a> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row my-1">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <div class="card">
+                <div class="card-header bg-primary">
+                  <p class="credentials">CREDENCIALES</p>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>email: {{EMAIL}}</li>
+                        <li>password: {{PASSWORD}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row my-1">
+        <div class="col-12">
+            <p>Este es un mensaje autogenerado por la aplicacion, favor no responder.</p>
+        </div>
+    </div>
+     
+</div>

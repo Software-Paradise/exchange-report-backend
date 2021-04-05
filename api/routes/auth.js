@@ -1,5 +1,8 @@
-const { usersController } = require('../../controllers/index')
+const { authController, sendMailController } = require('../../controllers/index')
+const authentication = require('../middlewares/authentication')
 const router = require('express').Router()
+const path = require('path')
+const { CLIENT_URL } = require('../../config/vars.config')
 
 /**
  *
@@ -9,43 +12,45 @@ const router = require('express').Router()
 module.exports = (app) => {
   app.use('/auth', router)
 
-  /**
-     * User Login Route
-     * @route {POST} /auth/login
-     * @params {request} el request debe portar un objeto con las credenciales del usuario
-     * @authentication Esta ruta no requiere authenticacion basica HTTP
-     *
-    */
-  router.post('/login', async (req, res) => {
-    const credentials = req.credentials
-    const { success, message, user, token } = await usersController.login(credentials)
-
+  router.post('/register', authentication, async (req, res) => {
+    const newUser = {
+      EMAIL: req.body.email,
+      PASSWORD: req.body.password,
+      FK_COMMERCE: req.body.idcommerce,
+      FK_PROFILE: req.body.idprofile,
+      FULLNAME: req.body.fullname,
+      POSITION: req.body.position,
+      URL: `${CLIENT_URL}/alyexchange/login`
+    }
+    const { success, message } = await authController.register(newUser)
     if (success) {
-      return res.status(201).json({ success, message, user, token })
+      const pathTemplate = path.resolve('./templates', 'newUserTemplate.hbs')
+      const data = {
+        from: 'admin@alyexchange.com',
+        to: newUser.EMAIL,
+        subject: 'Bienvenido a Alyexchange'
+      }
+      const { success, message } = await sendMailController.generateEmail(pathTemplate, data, newUser)
+      if (success) {
+        res.json({ success, message }).status(201)
+      } else {
+        res.json({ message, success }).status(401)
+      }
     } else {
-      return res.status(401).json({ message, success })
+      res.json({ message, success }).status(401)
     }
   })
 
-  /**
-     * User Register Route
-     * @route {POST} /auth/register
-     * @authentication Esta ruta no requiere authenticacion basica HTTP
-     *
-    */
-  router.post('/register', async (req, res) => {
-    const user = {
-      username: req.body.username,
-      email: req.body.email,
-      password: req.body.password
+  router.post('/login', async (req, res) => {
+    const credentials = {
+      EMAIL: req.body.email,
+      PASSWORD: req.body.password
     }
-
-    const { success, message } = await usersController.register(user)
-
+    const { success, message, user, token } = await authController.login(credentials)
     if (success) {
-      res.status(200).json({ message, success })
+      res.json({ success, user, token }).status(200)
     } else {
-      res.status(400).json({ message, success })
+      res.json({ success, message }).status(401)
     }
   })
 }

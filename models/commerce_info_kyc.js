@@ -2,15 +2,16 @@
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define('commerce_info_kyc', {
 
-    IDCOMMERCE_KYC: {
-      allowNull: false,
-      autoIncrement: true,
-      primaryKey: true,
-      type: DataTypes.INTEGER
-    },
+    // IDCOMMERCE_KYC: {
+    //   allowNull: false,
+    //   autoIncrement: true,
+    //   primaryKey: true,
+    //   type: DataTypes.INTEGER
+    // },
     FK_COMMERCE: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      unique: true,
       primaryKey: true,
       references: {
         model: 'commerce',
