@@ -5,7 +5,7 @@ dotenv.config()
 
 module.exports = {
   PORT: process.env.PORT || 8080,
-  PASSWORD_SECRET: process.env.PASSWORDSECRET || 'secret',
+  PASSWORD_SECRET: process.env.PASSWORD_SECRET || 'secret',
   JWT_SECRET: process.env.JWTSECRET || 'secret',
   DB: {
     NAME: process.env.DBNAME,
@@ -24,6 +24,7 @@ module.exports = {
     SUBJECT: process.env.SUBJECT
   },
 
+  CLIENT_URL: process.env.CLIENT_URL,
   ACCESS_TOKEN_SECRET: process.env.ACCESS_TOKEN_SECRET,
   REFRESH_TOKEN_SECRET: process.env.REFRESH_TOKEN_SECRET
 

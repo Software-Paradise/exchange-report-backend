@@ -1,10 +1,10 @@
 const router = require('express').Router()
 const { sendMailController } = require('../../controllers/index')
-const { authentication } = require('../middlewares/index')
 const pkg = require('../../package.json')
 const { pdfController } = require('../../controllers/index')
 const path = require('path')
-
+const { generateTemplate } = require('../../config/template.config')
+const { readFileSync } = require('fs')
 /**
  * @module testRoutes test Router
  * @param {*} app - Instancia del Framework de Express
@@ -29,13 +29,18 @@ module.exports = (app) => {
      * @authentication Requiere Middleware de autenticacion
      *
     */
-  router.get('/sendmail', authentication, async (_, res) => {
-    const pathTemplate = path.resolve('./templates', 'emailTemplate.hbs')
-    const { success, message, info } = await sendMailController.generateEmail(pathTemplate)
+  router.get('/sendmail', async (_, res) => {
+    const data = {
+      from: 'admin@alyexchange.com',
+      to: 'alekzander86@hotmail.es',
+      subject: 'Bienvenido a Alyexchange'
+    }
+    const pathTemplate = path.resolve('./templates', 'testTemplate.hbs')
+    const { success, message, info } = await sendMailController.generateEmail(pathTemplate, data, {})
     if (success) {
-      res.json({ message, info }).status(200)
+      res.json({ success, message, info }).status(200)
     } else {
-      res.json({ message }).status(400)
+      res.json({ success, message }).status(401)
     }
   })
 
@@ -58,7 +63,7 @@ module.exports = (app) => {
   router.get('/generate/pdf', async (_, res) => {
     const pathTemplate = path.resolve('./templates', 'testTemplate.hbs')
 
-    const { success, message, name } = await pdfController.generatePDF(pathTemplate, {})
+    const { success, message } = await pdfController.generatePDF(pathTemplate, {})
     if (success) {
       res.json({ message }).status(200)
     } else res.json({ message }).status(400)
@@ -83,5 +88,17 @@ module.exports = (app) => {
 
     if (success) res.json({ message, success }).status(200)
     else res.json({ message, success }).status(400)
+  })
+
+  router.get('/template', (_, res) => {
+    const pathTemplate = path.resolve('./templates', 'newUserTemplate.hbs')
+    const templateStr = readFileSync(pathTemplate).toString('utf8')
+    const data = {
+      FULLNAME: 'Lucas Andres Marsell',
+      EMAIL: 'alekzander86@hotmail.es',
+      PASSWORD: 'lamisma123*'
+    }
+    const { html } = generateTemplate(templateStr, data)
+    res.send(html)
   })
 }

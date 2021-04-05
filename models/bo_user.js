@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(255),
       defaultValue: '-'
     },
-    SHOLDRESSETPADD: {
+    SHOULDRESETPASS: {
       allowNull: false,
       type: DataTypes.BOOLEAN,
       defaultValue: 1
@@ -43,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
     FK_COMMERCE: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
+      // primaryKey: true,
       references: {
         model: 'commerce',
         key: 'IDCOMMERCE',
@@ -52,14 +52,14 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: 'RESTRICT',
       onUpdate: 'CASCADE'
     },
-    FK_TYPE_USER: {
+    FK_PROFILE: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
+      // primaryKey: true,
       references: {
-        model: 'type_user',
-        key: 'IDTYPE_USER',
-        as: 'FK_TYPE_USER'
+        model: 'profile',
+        key: 'IDPROFILE',
+        as: 'FK_PROFILE'
       },
       onDelete: 'RESTRICT',
       onUpdate: 'CASCADE'

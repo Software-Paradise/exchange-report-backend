@@ -4,8 +4,8 @@ const cors = require('cors')
 const helmet = require('helmet')
 const publicIp = require('public-ip')
 const routes = require('../api')
+const { initDataBase } = require('../models')
 const { sequelizeConfig } = require('../config/index')
-const db = require('../models')
 
 /**
  * Configure a express instance
@@ -33,7 +33,7 @@ module.exports = async (app) => {
   app.get('/', async (_, res) => res.send(await publicIp.v4()))
   app.use('/api/alyexchange', routes())
 
-  db.initDataBase(sequelizeConfig)
+  // await initDataBase(sequelizeConfig)
 
   return app
 }

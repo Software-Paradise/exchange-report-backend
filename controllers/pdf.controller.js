@@ -34,13 +34,13 @@ const pdfController = {
         await page.setViewport(pdfConfig.viewPort())
         await page.pdf(config)
         await browser.close()
-        return ({ success: true, message: 'pdf generado', name: config.path })
+        return ({ success: true, message: 'successfully generated pdf ', name: config.path })
       } catch (error) {
         console.log(error)
-        return ({ success: false, message: 'No se logro generar el pdf' })
+        return ({ success: false, message: 'Could not generate pdf file' })
       }
     } catch (error) {
-      return ({ success: false, message: 'No se encontro la plantilla HTML' })
+      return ({ success: false, message: 'HTML template not found ' })
     }
   }
 }

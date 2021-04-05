@@ -1,22 +1,21 @@
 'use strict'
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('type_user', {
+  return sequelize.define('permission', {
 
-    IDTYPE_USER: {
+    IDPERMISSION: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: DataTypes.INTEGER
     },
-    TYPE_USER: {
+    PERMISSION: {
       allowNull: false,
       unique: true,
-      type: DataTypes.STRING(100),
-      defaultValue: '-'
+      type: DataTypes.STRING(100)
     }
   },
   {
-    modelName: 'type_user',
+    modelName: 'permission',
     freezeTableName: true,
     timestamps: false
   }

@@ -40,38 +40,38 @@ module.exports = (sequelize, DataTypes) => {
     FK_COMMISSION: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
+      // primaryKey: true,
       references: {
         model: 'commission',
         key: 'IDCOMMISSION',
         as: 'FK_COMMISSION'
       },
       onDelete: 'RESTRICT',
-      onUpdate: 'CASCADE'
+      onUpdate: 'RESTRICT'
     },
     FK_TYPE: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
+      // primaryKey: true,
       references: {
         model: 'transaction_type',
         key: 'IDTRANSACTION_TYPE',
         as: 'FK_TYPE'
       },
       onDelete: 'RESTRICT',
-      onUpdate: 'CASCADE'
+      onUpdate: 'RESTRICT'
     },
     FK_STATUS: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
+      // primaryKey: true,
       references: {
         model: 'transaction_status',
         key: 'IDTRANSACTION_STATUS',
         as: 'FK_STATUS'
       },
       onDelete: 'RESTRICT',
-      onUpdate: 'CASCADE'
+      onUpdate: 'RESTRICT'
     },
     CREATED_AT: DataTypes.DATE,
     UPDATED_AT: DataTypes.DATE,

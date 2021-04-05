@@ -1,10 +1,16 @@
 'use strict'
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define('commerce_representative_info', {
-
+    // IDREPRESENTATIVE: {
+    //   allowNull: false,
+    //   autoIncrement: true,
+    //   primaryKey: true,
+    //   type: DataTypes.INTEGER
+    // },
     FK_BO_USER: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      unique: true,
       primaryKey: true,
       references: {
         model: 'bo_user',
@@ -25,12 +31,12 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: '-'
     },
     DNI: {
-      allowNull: false,
+      allowNull: true,
       unique: true,
       type: DataTypes.STRING(50)
     },
     NUMBER_PASSPORT: {
-      allowNull: false,
+      allowNull: true,
       unique: true,
       type: DataTypes.STRING(50)
     },
@@ -43,11 +49,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.STRING(20),
       defaultValue: '0000-0000'
-    },
-    EMAIL: {
-      allowNull: false,
-      unique: true,
-      type: DataTypes.STRING(255)
     },
     CREATED_AT: DataTypes.DATE,
     UPDATED_AT: DataTypes.DATE
