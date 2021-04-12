@@ -15,7 +15,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     FULLNAME: {
       allowNull: false,
-      type: DataTypes.TEXT('medium')
+      type: DataTypes.TEXT('medium'),
+      validate: {
+        notEmpty: true
+      }
     },
     PHONE: {
       allowNull: false,
@@ -25,12 +28,24 @@ module.exports = (sequelize, DataTypes) => {
     EMAIL: {
       allowNull: false,
       unique: true,
-      type: DataTypes.STRING(255)
+      type: DataTypes.STRING(255),
+      validate: {
+        notEmpty: true,
+        isEmail: true
+      }
     },
-    CREATED_AT: DataTypes.DATE,
-    UPDATED_AT: DataTypes.DATE,
-    IS_VERIFIED: DataTypes.BOOLEAN,
-    IS_ACTIVE: DataTypes.BOOLEAN
+    CREATED_AT: {
+      allowNull: false,
+      type: DataTypes.DATE
+    },
+    UPDATED_AT: {
+      allowNull: true,
+      type: DataTypes.DATE
+    },
+    IS_ACTIVE: {
+      allowNull: false,
+      type: DataTypes.BOOLEAN
+    }
   },
   {
     modelName: 'customer',

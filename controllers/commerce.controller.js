@@ -5,7 +5,15 @@ const { initDataBase } = require('../models/')
  * @module commerceController Controlador de commercios
  */
 const commerceController = {
-  list: async (filter = { }) => {
+  /**
+   *
+   * @param {*} req | Request Http route
+   * @param {*} res | Response Http route
+   * @returns
+   */
+  list: async (req, res) => {
+    console.time('medicion')
+    const filter = req.filter || {}
     try {
       const database = await initDataBase(sequelizeConfig)
       const commmerces = await database.commerce.findAll({
@@ -15,38 +23,50 @@ const commerceController = {
           {
           // group: ['IDBO_USER'],
             model: database.bo_user,
-            attributes: { exclude: ['PASSWORD', 'RESETPASSLINK', 'SHOULDRESETPASS', 'CREATED_AT', 'UPDATED_AT', 'DISABLED_AT'] },
+            attributes: { exclude: ['PASSWORD', 'CREATED_AT', 'UPDATED_AT', 'DISABLED_AT'] },
             where: filter
-          },
-          {
-            model: database.commerce_info_kyc,
-            attributes: { exclude: [''] }
           }
         ]
       })
-      return ({ commmerces, success: true, message: 'ok' })
+      console.timeEnd('medicion')
+      return res.json({ commmerces, success: true, message: 'ok' }).status(200)
     } catch (error) {
-      return ({ success: false, message: error })
+      return res.json({ success: false, message: error }).status(404)
     }
   },
 
-  create: async (data) => {
+  /**
+   *
+   * @param {*} req | Request Http route
+   * @param {*} res | Response Http route
+   * @returns
+   */
+  create: async (req, res) => {
+    const { commerce } = req.body
     try {
       const database = await initDataBase(sequelizeConfig)
-      const commerce = await database.commerce.create(data)
-      return ({ commerce, success: true, message: 'record created successfully ' })
+      const newCommerce = await database.commerce.create(commerce)
+      return res.json({ commerce: newCommerce, success: true, message: 'record created successfully ' }).status(204)
     } catch (error) {
-      return ({ success: false, message: true })
+      return res.json({ success: false, message: true }).status(404)
     }
   },
 
-  update: async (data, id) => {
+  /**
+   *
+   * @param {*} req | Request Http route
+   * @param {*} res | Response Http route
+   * @returns
+   */
+  update: async (req, res) => {
+    const { id } = req.params
+    const { commerce } = req.body
     try {
       const database = await initDataBase(sequelizeConfig)
-      const commerce = await database.commerce.update(data, { where: { IDCOMMERCE: id } })
-      return ({ commerce, success: true, message: 'record updated successfully' })
+      const mycommerce = await database.commerce.update(commerce, { where: { IDCOMMERCE: id } })
+      return res.json({ commerce: mycommerce, success: true, message: 'record updated successfully' }).status(204)
     } catch (error) {
-      return ({ success: false, message: 'update failed' })
+      return res.json({ success: false, message: 'update failed' }).json(404)
     }
   }
 }

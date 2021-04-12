@@ -2,12 +2,6 @@
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define('customer_info_kyc', {
 
-    IDCUSTOMER_KYC: {
-      allowNull: false,
-      autoIncrement: true,
-      primaryKey: true,
-      type: DataTypes.INTEGER
-    },
     FK_CUSTOMER: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -21,18 +15,23 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: 'RESTRICT',
       onUpdate: 'CASCADE'
     },
-    DNI: {
-      allowNull: false,
-      unique: true,
-      type: DataTypes.STRING(50)
-    },
     BIRTHDAY: {
       allowNull: true,
       type: DataTypes.DATE
     },
     ADDRESS: {
-      allowNull: true,
+      allowNull: false,
       type: DataTypes.TEXT('medium')
+    },
+    RUC: {
+      allowNull: true,
+      unique: true,
+      type: DataTypes.STRING(255)
+    },
+    PASSPORT: {
+      allowNull: false,
+      unique: true,
+      type: DataTypes.STRING(255)
     },
     NATIONALITY: {
       allowNull: true,
@@ -49,11 +48,6 @@ module.exports = (sequelize, DataTypes) => {
     ANSWER3: {
       allowNull: true,
       type: DataTypes.TEXT('medium')
-    },
-    NUMBER_PASSPORT: {
-      allowNull: false,
-      unique: true,
-      type: DataTypes.STRING(50)
     }
   },
   {

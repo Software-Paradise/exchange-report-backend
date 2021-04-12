@@ -28,11 +28,12 @@
         "moment": "^2.27.0",
         "morgan": "1.10.0",
         "mysql2": "2.2.5",
+        "node-html-to-image": "^3.1.0",
         "nodemailer": "6.4.16",
-        "nodemailer-mailgun-transport": "2.0.2",
+        "nodemailer-mailgun-transport": "^2.0.3",
         "public-ip": "^4.0.1",
         "puppeteer": "8.0.0",
-        "sequelize": "6.5.0",
+        "sequelize": "^6.5.0",
         "simple-node-logger": "^18.12.24"
     },
     "devDependencies": {

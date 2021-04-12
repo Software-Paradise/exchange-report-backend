@@ -5,7 +5,8 @@ const { initDataBase } = require('../models/')
  * @module usersInfoController Controlador de Informacion de Usuarios Registrados
  */
 const usersInfoController = {
-  list: async (filter = { }) => {
+  list: async (req, res) => {
+    const filter = req.filter || {}
     try {
       const database = await initDataBase(sequelizeConfig)
       console.time('filterquery')
@@ -14,7 +15,7 @@ const usersInfoController = {
         raw: false,
         include: [
           {
-            model: database.commerce_representative_info,
+            model: database.bouser_info,
             attributes: { exclude: ['FK_BO_USER'] }
           },
           {
@@ -28,9 +29,9 @@ const usersInfoController = {
         ]
       })
       console.timeEnd('filterquery')
-      return ({ users, success: true, message: 'is ok' })
+      return res.json({ users, success: true, message: 'is ok' }).status(200)
     } catch (error) {
-      return ({ success: false, message: 'something wrong' })
+      return res.json({ success: false, message: 'something wrong' }).status(404)
     }
   }
 }

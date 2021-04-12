@@ -1,17 +1,16 @@
 'use strict'
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('commerce_representative_info', {
-    // IDREPRESENTATIVE: {
-    //   allowNull: false,
-    //   autoIncrement: true,
-    //   primaryKey: true,
-    //   type: DataTypes.INTEGER
-    // },
+  return sequelize.define('bouser_info', {
+
     FK_BO_USER: {
       type: DataTypes.INTEGER,
       allowNull: false,
       unique: true,
       primaryKey: true,
+      validate: {
+        notEmpty: true,
+        isNumeric: true
+      },
       references: {
         model: 'bo_user',
         key: 'IDBO_USER',
@@ -22,39 +21,47 @@ module.exports = (sequelize, DataTypes) => {
     },
     FULLNAME: {
       allowNull: false,
-      type: DataTypes.TEXT('medium'),
-      defaultValue: '-'
+      validate: {
+        notEmpty: true
+      },
+      type: DataTypes.TEXT('medium')
     },
     POSITION: {
       allowNull: false,
       type: DataTypes.TEXT('medium'),
-      defaultValue: '-'
+      validate: {
+        notEmpty: true
+      }
     },
     DNI: {
-      allowNull: true,
+      allowNull: false,
       unique: true,
       type: DataTypes.STRING(50)
     },
-    NUMBER_PASSPORT: {
+    PASSPORT: {
       allowNull: true,
       unique: true,
       type: DataTypes.STRING(50)
     },
     ADDRESS: {
       allowNull: false,
-      type: DataTypes.TEXT('medium'),
-      defaultValue: '-'
+      type: DataTypes.TEXT('medium')
     },
     PHONE: {
       allowNull: false,
-      type: DataTypes.STRING(20),
-      defaultValue: '0000-0000'
+      type: DataTypes.STRING(20)
     },
-    CREATED_AT: DataTypes.DATE,
-    UPDATED_AT: DataTypes.DATE
+    CREATED_AT: {
+      allowNull: false,
+      type: DataTypes.DATE
+    },
+    UPDATED_AT: {
+      allowNull: true,
+      type: DataTypes.DATE
+    }
   },
   {
-    modelName: 'commerce_representative_info',
+    modelName: 'bouser_info',
     freezeTableName: true,
     timestamps: false
   }

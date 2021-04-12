@@ -8,30 +8,53 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       type: DataTypes.INTEGER
     },
-    DESCRIPTION: {
+    COMMERCE_NAME: {
       allowNull: false,
       type: DataTypes.STRING(255),
-      defaultValue: '-'
+      validate: {
+        notEmpty: true
+      }
     },
-    NUMBER_PHONE: {
+    ADDRESS: {
+      allowNull: false,
+      type: DataTypes.TEXT('medium'),
+      validate: {
+        notEmpty: true
+      }
+    },
+    WEBSITE: {
+      allowNull: true,
+      type: DataTypes.STRING(255)
+    },
+    PHONE: {
       allowNull: false,
       type: DataTypes.STRING(20),
       defaultValue: '0000-0000'
     },
-    ZIP_CODE: {
-      allowNull: false,
-      type: DataTypes.STRING(10),
-      defaultValue: '-'
+    TAXREG: {
+      allowNull: true,
+      unique: true,
+      type: DataTypes.STRING(100)
+    },
+    POSTAL_CODE: {
+      allowNull: true,
+      type: DataTypes.STRING(10)
     },
     LENGTH: {
-      allowNull: false,
+      allowNull: true,
       type: DataTypes.FLOAT,
-      defaultValue: 0.000
+      defaultValue: 0.000,
+      validate: {
+        isFloat: true
+      }
     },
     LATITUDE: {
-      allowNull: false,
+      allowNull: true,
       type: DataTypes.FLOAT,
-      defaultValue: 0.000
+      defaultValue: 0.000,
+      validate: {
+        isFloat: true
+      }
     }
   },
   {

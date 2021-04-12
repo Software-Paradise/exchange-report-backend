@@ -1,22 +1,10 @@
 'use strict'
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('customer_wallet', {
+  return sequelize.define('customer_docs_kyc', {
 
-    ID_WALLET: {
-      allowNull: false,
-      autoIncrement: true,
-      primaryKey: true,
-      type: DataTypes.INTEGER
-    },
-    HASH: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
-      unique: true
-    },
     FK_CUSTOMER: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      unique: true,
       primaryKey: true,
       references: {
         model: 'customer',
@@ -25,10 +13,14 @@ module.exports = (sequelize, DataTypes) => {
       },
       onDelete: 'RESTRICT',
       onUpdate: 'CASCADE'
+    },
+    DOCUMENT: {
+      allowNull: true,
+      type: DataTypes.BLOB('medium')
     }
   },
   {
-    modelName: 'customer_wallet',
+    modelName: 'customer_docs_kyc',
     freezeTableName: true,
     timestamps: false
   }
