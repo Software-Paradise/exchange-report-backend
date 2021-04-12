@@ -1,10 +1,8 @@
 const handlebars = require('handlebars')
-
 /**
  * Configuracion para el compilador de plantillas Handlebars
  */
 const getHtml = {
-
   /**
      *
      * @param {hbs} template Plantilla que se va compilar

@@ -4,7 +4,7 @@ const username = process.env.DBUSERNAME
 const password = process.env.DBPASSWORD
 const database = process.env.DBNAME
 const host = process.env.DBHOST
-const node_env = process.env.NODE_ENV
+const enviroment = process.env.NODE_ENV
 const dialect = process.env.DBDIALECT
 
 const config = {
@@ -14,11 +14,15 @@ const config = {
     database,
     options: {
       dialect,
-      host
+      host,
+      dialectOptions: {
+        multipleStatements: true
+      },
+      logging: false
     }
   },
   test: {},
   production: {}
 }
 
-module.exports = config[node_env]
+module.exports = config[enviroment]

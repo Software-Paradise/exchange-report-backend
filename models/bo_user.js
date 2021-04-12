@@ -9,26 +9,36 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     },
     PHOTO: {
+      allowNull: true,
       type: DataTypes.BLOB('medium')
     },
     EMAIL: {
       allowNull: false,
       unique: true,
-      type: DataTypes.STRING(255)
+      type: DataTypes.STRING(255),
+      validate: {
+        notEmpty: true,
+        isEmail: true
+      }
     },
     PASSWORD: {
       allowNull: false,
-      type: DataTypes.STRING(255)
-    },
-    RESETPASSLINK: {
-      allowNull: false,
       type: DataTypes.STRING(255),
-      defaultValue: '-'
+      validate: {
+        notEmpty: true
+      }
+    },
+    BOCOMISSION: {
+      allowNull: false,
+      type: DataTypes.INTEGER,
+      validate: {
+        notEmpty: true,
+        isNumeric: true
+      }
     },
     SHOULDRESETPASS: {
-      allowNull: false,
       type: DataTypes.BOOLEAN,
-      defaultValue: 1
+      allowNull: false
     },
     CREATED_AT: {
       allowNull: false,
@@ -43,7 +53,11 @@ module.exports = (sequelize, DataTypes) => {
     FK_COMMERCE: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      // primaryKey: true,
+      primaryKey: true,
+      validate: {
+        notEmpty: true,
+        isNumeric: true
+      },
       references: {
         model: 'commerce',
         key: 'IDCOMMERCE',
@@ -55,7 +69,11 @@ module.exports = (sequelize, DataTypes) => {
     FK_PROFILE: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      // primaryKey: true,
+      primaryKey: true,
+      validate: {
+        notEmpty: true,
+        isNumeric: true
+      },
       references: {
         model: 'profile',
         key: 'IDPROFILE',
@@ -64,10 +82,8 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: 'RESTRICT',
       onUpdate: 'CASCADE'
     },
-    IS_VERIFIED: {
-      type: DataTypes.BOOLEAN
-    },
     IS_ACTIVE: {
+      allowNull: false,
       type: DataTypes.BOOLEAN,
       defaultValue: 1
     }

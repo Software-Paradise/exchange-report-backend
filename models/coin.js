@@ -26,10 +26,22 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.STRING(5)
     },
-    CREATED_AT: DataTypes.DATE,
-    UPDATED_AT: DataTypes.DATE,
-    DISABLED_AT: DataTypes.DATE,
-    IS_ACTIVE: DataTypes.BOOLEAN
+    CREATED_AT: {
+      allowNull: false,
+      type: DataTypes.DATE
+    },
+    UPDATED_AT: {
+      allowNull: true,
+      type: DataTypes.DATE
+    },
+    DISABLED_AT: {
+      allowNull: true,
+      type: DataTypes.DATE
+    },
+    IS_ACTIVE: {
+      allowNull: false,
+      type: DataTypes.BOOLEAN
+    }
   },
   {
     modelName: 'coin',

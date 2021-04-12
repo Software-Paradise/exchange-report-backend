@@ -2,13 +2,18 @@
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define('bo_wallet', {
 
-    IDBO_WALLET: {
+    ID_WALLET: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: DataTypes.INTEGER
     },
-    FK_BO_USER: {
+    HASH: {
+      allowNull: false,
+      unique: true,
+      type: DataTypes.STRING(255)
+    },
+    FK_BOUSER: {
       type: DataTypes.INTEGER,
       allowNull: false,
       unique: true,
@@ -16,23 +21,12 @@ module.exports = (sequelize, DataTypes) => {
       references: {
         model: 'bo_user',
         key: 'IDBO_USER',
-        as: 'FK_BO_USER'
-      },
-      onDelete: 'RESTRICT',
-      onUpdate: 'CASCADE'
-    },
-    FK_WALLET_CURRENCY: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      references: {
-        model: 'coin',
-        key: 'IDCOIN',
-        as: 'FK_WALLET_CURRENCY'
+        as: 'FK_BOUSER'
       },
       onDelete: 'RESTRICT',
       onUpdate: 'CASCADE'
     }
+
   },
   {
     modelName: 'bo_wallet',

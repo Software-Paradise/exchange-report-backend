@@ -2,23 +2,25 @@
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define('history_transaction', {
 
-    FK_TRANSACTION: {
-      type: DataTypes.INTEGER,
+    IDTRANSACTION: {
       allowNull: false,
+      autoIncrement: true,
       primaryKey: true,
+      type: DataTypes.INTEGER
+    },
+    ORDER: {
+      allowNull: false,
       unique: true,
-      references: {
-        model: 'transaction',
-        key: 'IDTRANSACTION',
-        as: 'FK_TRANSACTION'
-      },
-      onDelete: 'RESTRICT',
-      onUpdate: 'CASCADE'
+      type: DataTypes.STRING(255)
     },
     COIN_TO: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
+      validate: {
+        notEmpty: true,
+        isNumeric: true
+      },
       references: {
         model: 'coin',
         key: 'IDCOIN',
@@ -31,6 +33,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
+      validate: {
+        notEmpty: true,
+        isNumeric: true
+      },
       references: {
         model: 'coin',
         key: 'IDCOIN',
@@ -39,11 +45,139 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: 'RESTRICT',
       onUpdate: 'CASCADE'
     },
-    AMOUNT_TO: DataTypes.FLOAT,
-    AMOUNT_FROM: DataTypes.FLOAT,
-    CURRENT_VALUE: DataTypes.FLOAT,
-    COMMISSION_USD: DataTypes.FLOAT,
-    COMMISSION_CRYPTO: DataTypes.FLOAT
+    FK_WALLET_BOU: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      validate: {
+        notEmpty: true,
+        isNumeric: true
+      },
+      references: {
+        model: 'bo_wallet',
+        key: 'ID_WALLET',
+        as: 'FK_WALLET_BOU'
+      },
+      onDelete: 'RESTRICT',
+      onUpdate: 'CASCADE'
+    },
+    FK_WALLET_CTM: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      validate: {
+        notEmpty: true,
+        isNumeric: true
+      },
+      references: {
+        model: 'customer_wallet',
+        key: 'ID_WALLET',
+        as: 'FK_WALLET_CTM'
+      },
+      onDelete: 'RESTRICT',
+      onUpdate: 'CASCADE'
+    },
+    AMOUNT_TO: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+      defaultValue: 0.00,
+      validate: {
+        notEmpty: true,
+        isFloat: true
+      }
+    },
+    AMOUNT_FROM: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+      defaultValue: 0.00,
+      validate: {
+        notEmpty: true,
+        isFloat: true
+      }
+    },
+    COMMISSION_USD: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+      defaultValue: 0.00,
+      validate: {
+        notEmpty: true,
+        isFloat: true
+      }
+    },
+    COMMISSION_CRYPTO: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+      defaultValue: 0.00,
+      validate: {
+        notEmpty: true,
+        isFloat: true
+      }
+    },
+    CURRENT_VALUE: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+      defaultValue: 0.00,
+      validate: {
+        notEmpty: true,
+        isFloat: true
+      }
+    },
+    FK_COMMISSION: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      validate: {
+        notEmpty: true,
+        isNumeric: true
+      },
+      references: {
+        model: 'commission',
+        key: 'IDCOMMISSION',
+        as: 'FK_COMMISSION'
+      },
+      onDelete: 'RESTRICT',
+      onUpdate: 'RESTRICT'
+    },
+    FK_TYPE: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      validate: {
+        notEmpty: true,
+        isNumeric: true
+      },
+      references: {
+        model: 'transaction_type',
+        key: 'IDTRANSACTION_TYPE',
+        as: 'FK_TYPE'
+      },
+      onDelete: 'RESTRICT',
+      onUpdate: 'RESTRICT'
+    },
+    FK_STATUS: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      validate: {
+        notEmpty: true,
+        isNumeric: true
+      },
+      references: {
+        model: 'transaction_status',
+        key: 'IDTRANSACTION_STATUS',
+        as: 'FK_STATUS'
+      },
+      onDelete: 'RESTRICT',
+      onUpdate: 'RESTRICT'
+    },
+    CREATED_AT: {
+      allowNull: false,
+      type: DataTypes.DATE
+    },
+    UPDATED_AT: {
+      allowNull: true,
+      type: DataTypes.DATE
+    }
   },
   {
     modelName: 'history_transaction',

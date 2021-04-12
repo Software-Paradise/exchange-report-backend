@@ -3,16 +3,16 @@
     *, ::after, ::before {
         box-sizing: border-box;
     }
- 
-    .portrait {
-        width: 8.3in;
-        height: 10.8.0in;
-    }
 
     body{
-        font-family: 'Roboto', sans-serif;
+        width: 499px;
+        height: 547px;
     }
 
+    .portrait {
+        width: 5.2in;
+        height: 5.7in;
+    }
     .container {
         width: 100%;
         padding-right: 15px;
@@ -45,7 +45,7 @@
     #fff;
     background-clip: border-box;
     border: 1px solid
-        rgba(0,0,0,.125);
+        rgba(255, 255, 255, 0.993);
         border-radius: .25rem;
     }
     .card-header:first-child {
@@ -129,6 +129,11 @@
         padding-left: 15px;
     }
 
+    .py-1{
+        padding-top: 0.3rem;
+        padding-bottom: 0.3rem;
+    }
+
     .px-1 {
         padding-right: 0.3rem;
         padding-left: 0.3rem;
@@ -174,7 +179,7 @@
 
     .bg-primary {
         background-color: 
-        #161d29 !important;
+        #0e0f11 !important;
     }
 
     .text-white {
@@ -215,51 +220,82 @@
         color: #f8b422 !important;
         text-align: center;
     }
-</style>
-<div class="">
-    <div class="header">
-        <h2 class="title">AlyExchange</h2>
-    </div>
-    <div class="row my-2">
-        <div class="col-1"></div>
-        <div class="col-10">
-            <div class="card">
-                <div class="card-body">
-                    <h4>Estimado, {{FULLNAME}}.</h4> 
-                    <p>
-                        En hora buena ha sido habilitada tu cuenta en nuestra aplicacion AlyExchange, 
-                        ahora ya podras ver el detalle de tus transacciones y generar reportes en formato
-                        pdf que seran enviados a tu correo.
-                    </p>
-                    <p>
-                        Para poder iniciar por favor, introduce tus credenciales en el formulario de inicio 
-                        de sesion, haciendo clic en el siguiente enlace:
-                    </p>
-                    <a href='{{URL}}'>Haga clic en este enlace para iniciar sesion en AlyExchange</a> 
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row my-1">
-        <div class="col-1"></div>
-        <div class="col-10">
-            <div class="card">
-                <div class="card-header bg-primary">
-                  <p class="credentials">CREDENCIALES</p>
-                </div>
-                <div class="card-body">
-                    <ul>
-                        <li>email: {{EMAIL}}</li>
-                        <li>password: {{PASSWORD}}</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row my-1">
-        <div class="col-12">
-            <p>Este es un mensaje autogenerado por la aplicacion, favor no responder.</p>
-        </div>
-    </div>
+
+    p.text-center{
+     font-weight: 100;
+     font-size: 0.85rem;
+     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+     margin-top: 0.04rem;
+     margin-bottom: 0.04rem;
+    }
+    a.link{
+      color: #01BAEF !important;
+     font-weight: 100;
+     font-size: 0.85rem;
+     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+     margin-top: 0.04rem;
+     margin-bottom: 0.04rem;
      
+    }
+    .bg-white{
+       background-color: white;
+    }
+    img{
+        width: 20rem;
+        
+    }
+    p.hide{
+        opacity: 0;
+        color: white;
+    }
+    
+</style>
+<body>
+    
+
+<div class="portrait bg-primary">
+
+    <div class="my-2">
+        <p class="hide">separador</p>
+    </div>
+    <div class="bg-white py-1">
+        <img src="{{{PNG2}}}" alt="alyexchange" style="margin: 2px auto; display: block;">
+    </div>
+    <br>
+    <p class="text-center text-white">Estimado/a</p>
+    <p class="text-center text-white">{{FULLNAME}}</p>
+    <p class="text-center text-white">Ha sido invitado a formar parte,</p>
+    <p class="text-center text-white">del equipo de: {{COMMERCE}}.</p>
+    <p class="text-center text-white">Por el administrador/a: {{USERADMIN}}.</p>
+    <div class="my-2"></div>
+    <p class="text-center text-white">Para poder iniciar sesion por favor, introduzca</p>
+    <p class="text-center text-white">sus crendenciales en la pantalla de inicio de</p>
+    <p class="text-center text-white">AlyExchange Reports, haciendo clic en el</p>
+    <p class="text-center text-white">enlace que encontrará en el cuerpo del correo </p>
+    <div class="my-2"></div>
+   
+    <div class="row my-2">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div class="card bg-primary">
+                <div class="card-body">
+                    <p class="text-center text-white">Crendenciales</p>
+                    <p class="text-center text-white">email: {{EMAIL}}</p>
+                    <p class="text-center text-white">contraseña: {{PASSWORD}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="text-center text-white">Este es un mensaje autogenerado, favor no responder</p>
+     <div class="py-1">
+        <img src="{{{PNG1}}}" alt="powered" style="margin: 2px auto; display: block; width: 10rem;">
+    </div>
+    <p class="text-center text-white">
+        Contáctanos | Términos y Condiciones | Preguntas frecuentes
+    </p>
+    <div class="text-center my-1">
+        <a href="http://www.alysystem.com" class="link" >www.alysystem.com</a>
+    </div>
+    <br>
 </div>
+</body>

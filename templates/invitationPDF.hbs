@@ -1,0 +1,304 @@
+<style type="text/css">
+    
+    *, ::after, ::before {
+        box-sizing: border-box;
+    }
+
+    body{
+        width: 499px;
+        height: 547px;
+    }
+
+    .portrait {
+        width: 5.2in;
+        height: 5.7in;
+    }
+    .container {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    
+    .header{
+        border: 1px solid #161d29;
+        padding: 0.02rem 0rem;
+        background-color: #161d29;
+        border-radius: 10px;
+    }
+    .title {
+        font-family: 'Roboto', sans-serif;
+        color: #ffffff;
+        text-align: center;
+        margin: 0.15rem 0rem;
+    }
+    .card {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: 
+    #fff;
+    background-clip: border-box;
+    border: 1px solid
+        rgba(255, 255, 255, 0.993);
+        border-radius: .25rem;
+    }
+    .card-header:first-child {
+        border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+    }
+    .card-header {
+        padding: .5rem 1.25rem;
+        margin-bottom: 0;
+        background-color: rgba(0,0,0,.03);
+        border-bottom: 1px solid rgba(0,0,0,.125);
+        font-size: 0.8rem;
+    }
+    .card-body {
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        padding: 1.0rem;
+        color: rgb(38, 56, 94);
+    }
+
+    .row {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+
+    .col-1{
+         -ms-flex: 0 0 8.333333%;
+        flex: 0 0 8.333333%;
+        max-width: 8.333333%;
+    }
+
+    .col-2{
+         -ms-flex: 0 0 16.666666%;
+        flex: 0 0 16.666666%;
+        max-width: 16.666666%;
+    }
+
+    .col-3{
+         -ms-flex: 0 0 25%;
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+
+    .col-4 {
+        -ms-flex: 0 0 33.333333%;
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+    }
+    
+    .col-6 {
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .col-8 {
+        -ms-flex: 0 0 66.666666%;
+        flex: 0 0 66.666666%;
+        max-width: 66.666666%;
+    }
+
+    .col-10{
+         -ms-flex: 0 0 83.333333%;
+        flex: 0 0 83.333333%;
+        max-width: 83.333333%;
+    }
+
+    .col-12 {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+        position: relative;
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    .py-1{
+        padding-top: 0.3rem;
+        padding-bottom: 0.3rem;
+    }
+
+    .px-1 {
+        padding-right: 0.3rem;
+        padding-left: 0.3rem;
+    }
+
+    .px-2 {
+        padding-right: 0.67rem;
+        padding-left: 0.67rem;
+    }
+
+    .px-3 {
+        padding-right: 1rem;
+        padding-left: 1rem;
+    }
+
+    .my-1{
+        margin-top: 0.33rem;
+        margin-bottom: 0.33rem;
+    }
+    .my-2{
+        margin-top: 0.66rem;
+        margin-bottom: 0.66rem;
+    }
+    .my-3{
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+    .mx-1{
+        margin-left: 0.33rem;
+        margin-right: 0.33rem;
+    }
+    .mx-2{
+        margin-left: 0.66rem;
+        margin-right: 0.66rem;
+    }
+    .mx-3{
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+    .text-center{
+        text-align: center;
+    }
+
+    .bg-primary {
+        background-color: 
+        #0e0f11 !important;
+    }
+
+    .text-white {
+        color: 
+        #fff !important;
+    }
+
+    .list-group {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        padding-left: 0;
+        margin-bottom: 0;
+    }
+    dl, ol, ul {
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+    .list-group-flush .list-group-item {
+        border-right: 0;
+        border-left: 0;
+        border-radius: 0;
+    }
+    .list-group-item {
+        position: relative;
+        display: block;
+        padding: .50rem 1rem;
+        margin-bottom: -1px;
+        background-color: #fff;
+        border: 1px solid rgba(0,0,0,.125);
+        color: rgb(82, 95, 112);
+        font-size: 0.75rem;
+    }
+    
+    .credentials{
+        font-size: 1.2rem;
+        color: #f8b422 !important;
+        text-align: center;
+    }
+
+    p.text-center{
+     font-weight: 100;
+     font-size: 0.85rem;
+     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+     margin-top: 0.04rem;
+     margin-bottom: 0.04rem;
+    }
+    a.link{
+      color: #01BAEF !important;
+     font-weight: 100;
+     font-size: 0.85rem;
+     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+     margin-top: 0.04rem;
+     margin-bottom: 0.04rem;
+     
+    }
+    .bg-white{
+       background-color: white;
+    }
+    img{
+        width: 20rem;
+        
+    }
+    p.hide{
+        opacity: 0;
+        color: white;
+    }
+    
+</style>
+<body>
+    
+
+<div class="portrait bg-primary">
+
+    <div class="my-2">
+        <p class="hide">separador</p>
+    </div>
+    <div class="bg-white py-1">
+        <img src="{{{PNG2}}}" alt="alyexchange" style="margin: 2px auto; display: block;">
+    </div>
+    <br>
+    <p class="text-center text-white">Estimado/a: {{FULLNAME}}</p>
+    <p class="text-center text-white">Ha sido invitado a formar parte,</p>
+    <p class="text-center text-white">del equipo de: {{COMMERCE}}.</p>
+    <p class="text-center text-white">Por el administrador/a: {{USERADMIN}}.</p>
+    <div class="my-2"></div>
+    <p class="text-center text-white">Por favor, introduzca sus crendenciales</p>
+    <p class="text-center text-white">en AlyExchange Reports haciendo clic en el</p>
+    <p class="text-center text-white">enlace que encontrará en el cuerpo del correo </p>
+    <p class="text-center text-white">O bien abra la aplicación desde el siguiente enlace</p>
+    <div class="my-2"></div>
+    
+    <div class="text-center my-1">
+        <a href="http://www.alysystem.com" class="link" >Accede a AlyExchange Reports</a>
+    </div>
+
+    <div class="row my-2">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="card bg-primary">
+                <div class="card-body">
+                    <p class="text-center text-white">Crendenciales</p>
+                    <p class="text-center text-white">email: {{EMAIL}}</p>
+                    <p class="text-center text-white">contraseña: {{PASSWORD}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="text-center text-white">Este es un mensaje autogenerado, favor no responder</p>
+     <div class="py-1">
+        <img src="{{{PNG1}}}" alt="powered" style="margin: 2px auto; display: block; width: 10rem;">
+    </div>
+    <p class="text-center text-white">
+        Contáctanos | Términos y Condiciones | Preguntas frecuentes
+    </p>
+    <div class="text-center my-1">
+        <a href="http://www.alysystem.com" class="link" >www.alysystem.com</a>
+    </div>
+    <br>
+</div>
+</body>

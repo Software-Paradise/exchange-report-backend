@@ -4,8 +4,8 @@ const cors = require('cors')
 const helmet = require('helmet')
 const publicIp = require('public-ip')
 const routes = require('../api')
-const { initDataBase } = require('../models')
-const { sequelizeConfig } = require('../config/index')
+// const { initDataBase } = require('../models')
+// const { sequelizeConfig } = require('../config/index')
 
 /**
  * Configure a express instance
