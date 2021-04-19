@@ -15,8 +15,8 @@ const usersInfoController = {
         raw: false,
         include: [
           {
-            model: database.bouser_info,
-            attributes: { exclude: ['FK_BO_USER'] }
+            model: database.agent_info,
+            attributes: { exclude: ['FK_BOUSER'] }
           },
           {
             model: database.commerce,
@@ -25,10 +25,14 @@ const usersInfoController = {
           {
             model: database.profile,
             attributes: { exclude: ['IDPROFILE'] }
+          },
+          {
+            model: database.agent_wallet,
+            attributes: { exclude: ['FK_BOUSER'] }
           }
         ]
       })
-      console.timeEnd('filterquery')
+      console.timeEnd()
       return res.json({ users, success: true, message: 'is ok' }).status(200)
     } catch (error) {
       return res.json({ success: false, message: 'something wrong' }).status(404)

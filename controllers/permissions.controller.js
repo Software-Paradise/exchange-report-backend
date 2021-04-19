@@ -13,7 +13,7 @@ module.exports = {
   verifyPermission: async (IDBO_USER, MODULE) => {
     try {
       const database = await initDataBase(sequelizeConfig)
-      const response = await database.sequelize.query(getPermissions(IDBO_USER, MODULE),
+      const response = await database.sequelize.query(getPermissions(),
         { replacements: { idbo_user: IDBO_USER, module: MODULE }, type: QueryTypes.SELECT })
       return response[0].PERMISSION.split(',')
     } catch (error) {

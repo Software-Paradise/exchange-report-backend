@@ -9,20 +9,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     },
     HASH: {
-      type: DataTypes.STRING(255),
       allowNull: false,
-      unique: true
+      unique: true,
+      type: DataTypes.STRING(255)
     },
     FK_CUSTOMER: {
       type: DataTypes.INTEGER,
       allowNull: false,
       unique: true,
       primaryKey: true,
-      references: {
-        model: 'customer',
-        key: 'IDCUSTOMER',
-        as: 'FK_CUSTOMER'
-      },
+      references: { model: 'customer', key: 'IDCUSTOMER', as: 'FK_CUSTOMER' },
       onDelete: 'RESTRICT',
       onUpdate: 'CASCADE'
     }

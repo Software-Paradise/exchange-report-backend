@@ -1,5 +1,6 @@
 const { sequelizeConfig } = require('../config/index')
 const { initDataBase } = require('../models/')
+const { findOneValidator } = require('../validators/commerce.validator')
 
 /**
  * @module commerceController Controlador de commercios
@@ -11,20 +12,27 @@ const commerceController = {
    * @param {*} res | Response Http route
    * @returns
    */
-  list: async (req, res) => {
+  findAll: async (req, res) => {
     console.time('medicion')
     const filter = req.filter || {}
     try {
       const database = await initDataBase(sequelizeConfig)
       const commmerces = await database.commerce.findAll({
-        // group: ['IDCOMMERCE'],
-        // required: false,
         include: [
           {
-          // group: ['IDBO_USER'],
             model: database.bo_user,
-            attributes: { exclude: ['PASSWORD', 'CREATED_AT', 'UPDATED_AT', 'DISABLED_AT'] },
-            where: filter
+            attributes: [
+              'IDBO_USER', 'PHOTO', 'EMAIL', 'BOCOMISSION'
+            ],
+            where: filter,
+            include: [
+              {
+                model: database.profile,
+                attributes: [
+                  'PROFILE'
+                ]
+              }
+            ]
           }
         ]
       })
@@ -46,9 +54,9 @@ const commerceController = {
     try {
       const database = await initDataBase(sequelizeConfig)
       const newCommerce = await database.commerce.create(commerce)
-      return res.json({ commerce: newCommerce, success: true, message: 'record created successfully ' }).status(204)
+      return res.json({ commerce: newCommerce, success: true, message: 'record created successfully ' }).status(201)
     } catch (error) {
-      return res.json({ success: false, message: true }).status(404)
+      return res.json({ success: false, message: true }).status(400)
     }
   },
 
@@ -59,14 +67,18 @@ const commerceController = {
    * @returns
    */
   update: async (req, res) => {
-    const { id } = req.params
-    const { commerce } = req.body
-    try {
-      const database = await initDataBase(sequelizeConfig)
-      const mycommerce = await database.commerce.update(commerce, { where: { IDCOMMERCE: id } })
-      return res.json({ commerce: mycommerce, success: true, message: 'record updated successfully' }).status(204)
-    } catch (error) {
-      return res.json({ success: false, message: 'update failed' }).json(404)
+    if (findOneValidator(req.params)) {
+      const { id } = req.params
+      const { commerce } = req.body
+      try {
+        const database = await initDataBase(sequelizeConfig)
+        const mycommerce = await database.commerce.update(commerce, { where: { IDCOMMERCE: id } })
+        return res.json({ commerce: mycommerce, success: true, message: 'record updated successfully' }).status(200)
+      } catch (error) {
+        return res.json({ success: false, message: 'update failed' }).json(400)
+      }
+    } else {
+      res.json({ success: false, message: 'Paramns not found ' }).status(400)
     }
   }
 }

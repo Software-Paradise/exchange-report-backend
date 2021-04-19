@@ -4,7 +4,6 @@ module.exports = (sequelize, DataTypes) => {
 
     IDCOIN: {
       allowNull: false,
-      autoIncrement: true,
       primaryKey: true,
       type: DataTypes.INTEGER
     },
@@ -18,21 +17,10 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
       type: DataTypes.STRING(10)
     },
-    CODE1: {
-      allowNull: false,
-      type: DataTypes.STRING(5)
-    },
-    CODE2: {
-      allowNull: false,
-      type: DataTypes.STRING(5)
-    },
-    CREATED_AT: {
-      allowNull: false,
-      type: DataTypes.DATE
-    },
-    UPDATED_AT: {
+    PRICE: {
       allowNull: true,
-      type: DataTypes.DATE
+      type: DataTypes.FLOAT(18, 10),
+      validate: { isFloat: true }
     },
     DISABLED_AT: {
       allowNull: true,

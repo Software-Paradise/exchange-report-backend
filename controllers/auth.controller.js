@@ -12,7 +12,7 @@ const authController = {
   register: async (req, res) => {
     if (createValidator(req.body)) {
       try {
-        const { user, usercommerceinfo, admin } = req.body
+        const { user, agentinfo, admin } = req.body
         const database = await initDataBase(sequelizeConfig)
         const exist = await database.bo_user.findAll({ where: { EMAIL: user.email } })
 
@@ -33,16 +33,16 @@ const authController = {
           try {
             await database.sequelize.transaction(async (_) => {
               const user = await database.bo_user.create(newUser)
-              const representativeInfo = {
-                FK_BO_USER: user.IDBO_USER,
-                FULLNAME: usercommerceinfo.fullname,
-                ADDRESS: usercommerceinfo.address,
-                PHONE: usercommerceinfo.phone,
-                POSITION: usercommerceinfo.position,
-                DNI: usercommerceinfo.dni,
+              const agentInfo = {
+                FK_BOUSER: user.IDBO_USER,
+                FULLNAME: agentinfo.fullname,
+                ADDRESS: agentinfo.address,
+                PHONE: agentinfo.phone,
+                POSITION: agentinfo.position,
+                DNI: agentinfo.dni,
                 CREATED_AT: constants.NOW()
               }
-              await database.bouser_info.create(representativeInfo)
+              await database.agent_info.create(agentInfo)
             })
           } catch (error) {
             return res.json({ success: false, message: error.errors[0].message }).status(401)
@@ -52,7 +52,7 @@ const authController = {
             from: 'test@alyexchange.com',
             to: user.email,
             subject: 'Correo de Invitacion AlyExchange',
-            FULLNAME: usercommerceinfo.fullname,
+            FULLNAME: agentinfo.fullname,
             EMAIL: user.email,
             PASSWORD: user.password,
             URL: 'http://www.alysistem.com/alyexchange/login',
@@ -86,7 +86,7 @@ const authController = {
           attributes: { exclude: ['CREATED_AT', 'UPDATED_AT', 'DISABLED_AT'] },
           include: [
             {
-              model: database.bouser_info,
+              model: database.agent_info,
               attributes: { exclude: ['DNI', 'PASSPORT', 'ADDRESS'] }
             },
             {

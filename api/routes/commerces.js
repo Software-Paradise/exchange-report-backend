@@ -9,9 +9,7 @@ const { canView, canCreate, canUpdate } = require('../../middleware/commerces.pe
 module.exports = (app) => {
   app.use('/commerce', router)
 
-  router.get('/', authentication, canView(['EXCHANGE']), commerceController.list)
-
+  router.get('/', authentication, canView(['EXCHANGE']), commerceController.findAll)
   router.post('/', authentication, canCreate(['EXCHANGE']), commerceController.create)
-
   router.put('/:id', authentication, canUpdate(['EXCHANGE']), commerceController.update)
 }

@@ -1,6 +1,6 @@
 'use strict'
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('bo_wallet', {
+  return sequelize.define('agent_wallet', {
 
     ID_WALLET: {
       allowNull: false,
@@ -18,18 +18,14 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
       primaryKey: true,
-      references: {
-        model: 'bo_user',
-        key: 'IDBO_USER',
-        as: 'FK_BOUSER'
-      },
+      references: { model: 'bo_user', key: 'IDBO_USER', as: 'FK_BOUSER' },
       onDelete: 'RESTRICT',
       onUpdate: 'CASCADE'
     }
 
   },
   {
-    modelName: 'bo_wallet',
+    modelName: 'agent_wallet',
     freezeTableName: true,
     timestamps: false
   }

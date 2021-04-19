@@ -11,16 +11,12 @@ module.exports = (sequelize, DataTypes) => {
     COMMERCE_NAME: {
       allowNull: false,
       type: DataTypes.STRING(255),
-      validate: {
-        notEmpty: true
-      }
+      validate: { notEmpty: true }
     },
     ADDRESS: {
       allowNull: false,
       type: DataTypes.TEXT('medium'),
-      validate: {
-        notEmpty: true
-      }
+      validate: { notEmpty: true }
     },
     WEBSITE: {
       allowNull: true,
@@ -39,22 +35,6 @@ module.exports = (sequelize, DataTypes) => {
     POSTAL_CODE: {
       allowNull: true,
       type: DataTypes.STRING(10)
-    },
-    LENGTH: {
-      allowNull: true,
-      type: DataTypes.FLOAT,
-      defaultValue: 0.000,
-      validate: {
-        isFloat: true
-      }
-    },
-    LATITUDE: {
-      allowNull: true,
-      type: DataTypes.FLOAT,
-      defaultValue: 0.000,
-      validate: {
-        isFloat: true
-      }
     }
   },
   {

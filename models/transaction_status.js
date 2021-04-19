@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define('transaction_status', {
 
-    IDTRANSACTION_STATUS: {
+    IDSTATUS: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
