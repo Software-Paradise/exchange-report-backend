@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define('transaction_type', {
 
-    IDTRANSACTION_TYPE: {
+    IDTYPE: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,

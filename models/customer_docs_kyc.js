@@ -6,11 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      references: {
-        model: 'customer',
-        key: 'IDCUSTOMER',
-        as: 'FK_CUSTOMER'
-      },
+      references: { model: 'customer', key: 'IDCUSTOMER', as: 'FK_CUSTOMER' },
       onDelete: 'RESTRICT',
       onUpdate: 'CASCADE'
     },

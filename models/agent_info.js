@@ -1,37 +1,26 @@
 'use strict'
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('bouser_info', {
+  return sequelize.define('agent_info', {
 
-    FK_BO_USER: {
+    FK_BOUSER: {
       type: DataTypes.INTEGER,
       allowNull: false,
       unique: true,
       primaryKey: true,
-      validate: {
-        notEmpty: true,
-        isNumeric: true
-      },
-      references: {
-        model: 'bo_user',
-        key: 'IDBO_USER',
-        as: 'FK_BO_USER'
-      },
+      validate: { notEmpty: true, isNumeric: true },
+      references: { model: 'bo_user', key: 'IDBO_USER', as: 'FK_BOUSER' },
       onDelete: 'RESTRICT',
       onUpdate: 'CASCADE'
     },
     FULLNAME: {
       allowNull: false,
-      validate: {
-        notEmpty: true
-      },
+      validate: { notEmpty: true },
       type: DataTypes.TEXT('medium')
     },
     POSITION: {
       allowNull: false,
       type: DataTypes.TEXT('medium'),
-      validate: {
-        notEmpty: true
-      }
+      validate: { notEmpty: true }
     },
     DNI: {
       allowNull: false,
@@ -61,7 +50,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   },
   {
-    modelName: 'bouser_info',
+    modelName: 'agent_info',
     freezeTableName: true,
     timestamps: false
   }

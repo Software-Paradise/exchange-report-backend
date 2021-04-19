@@ -16,25 +16,17 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
       type: DataTypes.STRING(255),
-      validate: {
-        notEmpty: true,
-        isEmail: true
-      }
+      validate: { notEmpty: true, isEmail: true }
     },
     PASSWORD: {
       allowNull: false,
       type: DataTypes.STRING(255),
-      validate: {
-        notEmpty: true
-      }
+      validate: { notEmpty: true }
     },
     BOCOMISSION: {
       allowNull: false,
-      type: DataTypes.INTEGER,
-      validate: {
-        notEmpty: true,
-        isNumeric: true
-      }
+      type: DataTypes.DECIMAL(3, 2),
+      validate: { notEmpty: true, isDecimal: true }
     },
     SHOULDRESETPASS: {
       type: DataTypes.BOOLEAN,
@@ -54,15 +46,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      validate: {
-        notEmpty: true,
-        isNumeric: true
-      },
-      references: {
-        model: 'commerce',
-        key: 'IDCOMMERCE',
-        as: 'FK_COMMERCE'
-      },
+      validate: { notEmpty: true, isNumeric: true },
+      references: { model: 'commerce', key: 'IDCOMMERCE', as: 'FK_COMMERCE' },
       onDelete: 'RESTRICT',
       onUpdate: 'CASCADE'
     },
@@ -70,15 +55,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      validate: {
-        notEmpty: true,
-        isNumeric: true
-      },
-      references: {
-        model: 'profile',
-        key: 'IDPROFILE',
-        as: 'FK_PROFILE'
-      },
+      validate: { notEmpty: true, isNumeric: true },
+      references: { model: 'profile', key: 'IDPROFILE', as: 'FK_PROFILE' },
       onDelete: 'RESTRICT',
       onUpdate: 'CASCADE'
     },

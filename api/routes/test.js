@@ -2,7 +2,10 @@ const router = require('express').Router()
 const pkg = require('../../package.json')
 const { CLIENT_URL } = require('../../config/vars.config')
 const mailService = require('../../services/mail.service')
-const { migrateSeed } = require('../../migrations/seed.migration')
+const { loadMigrate, resetTables } = require('../../migrations/index')
+const coinController = require('../../controllers/coin.controller')
+const countryController = require('../../controllers/country.controller')
+
 /**
  * @module testRoutes test Router
  * @param {*} app - Instancia del Framework de Express
@@ -58,9 +61,21 @@ module.exports = (app) => {
     }
   })
 
-  router.get('/migrate', async (_, res) => {
-    const { success, message } = await migrateSeed()
-    if (success) res.json({ success })
-    else res.json({ success, message })
+  router.get('/reset/table', async (_, res) => {
+    const { success, message } = await resetTables.reset()
+    if (success) {
+      res.json({ success, message })
+    } else res.json({ success, message })
   })
+
+  router.get('/load/table', async (_, res) => {
+    const { success, message } = await loadMigrate.load()
+    if (success) {
+      res.json({ success, message })
+    } else res.json({ success, message })
+  })
+
+  router.get('/countries', countryController.create)
+
+  router.get('/coins', coinController.create)
 }
