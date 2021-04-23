@@ -20,6 +20,8 @@ module.exports = {
       const customers = seed.customer()
       const agentWallet = seed.agent_wallet()
       const customerWallet = seed.customer_wallet()
+      const transactions = seed.transactions()
+      const transinfo = seed.transaction_info()
 
       const migrations = [
         { obj: profiles, table: 'profile' },
@@ -35,7 +37,9 @@ module.exports = {
         { obj: fees, table: 'fees' },
         { obj: customers, table: 'customer' },
         { obj: agentWallet, table: 'agent_wallet' },
-        { obj: customerWallet, table: 'customer_wallet' }
+        { obj: customerWallet, table: 'customer_wallet' },
+        { obj: transactions, table: 'transaction' },
+        { obj: transinfo, table: 'transaction_info' }
       ]
       setTimeout(() => {
         migrations.forEach(data => {

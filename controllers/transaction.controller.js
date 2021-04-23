@@ -1,6 +1,7 @@
 const { sequelizeConfig, constants } = require('../config/index')
 const { initDataBase } = require('../models/')
-const { createValidator, findOneValidator } = require('../validators/transaction.validator')
+const { createValidator } = require('../validators/transaction.validator')
+const { paramsValidator } = require('../validators/general.validator')
 const { Op } = require('sequelize')
 // const { calprofit } = require('../services/transaction.service')
 const { storageProcess } = require('../queries/transactions.queries')
@@ -40,8 +41,7 @@ module.exports = {
    */
   findOne: async (req, res) => {
     const filter = req.filter || {}
-    console.log('este es el filtro: ', filter)
-    if (findOneValidator(req.params)) {
+    if (paramsValidator(req.params)) {
       try {
         const database = await initDataBase(sequelizeConfig)
         const transaction = await database.transaction_history_view.findOne({
@@ -65,6 +65,147 @@ module.exports = {
       }
     } else {
       res.json({ success: false, message: 'Error' }).status(400)
+    }
+  },
+
+  /**
+   *
+   * @param {*} req | Request HTTP Method
+   * @param {*} res | Response HTTP Method
+   * @returns
+   */
+  findByIdCustomer: async (req, res) => {
+    const filter = req.filter || {}
+    if (paramsValidator(req.params)) {
+      try {
+        const database = await initDataBase(sequelizeConfig)
+        const transaction = await database.transaction_history_view.findAll({
+          where: {
+            [Op.and]: [
+              { IDCUSTOMER: req.params.id },
+              filter
+            ]
+          },
+          attributes: [
+            'IDTRANSACTION', 'IDAGENT_WALLET', 'CUSTOMER_FULLNAME', 'COUNTRY', 'CITY',
+            'CUSTOMER_DNI', 'CREATED_AT', 'TRANSACTION_TYPE',
+            'ORIGIN_CURRENCY', 'AMOUNT_FROM', 'DESTINATION_CURRENCY', 'AMOUNT_TO',
+            'MINER_FEE_USD', 'MINER_FEE_CRYPTO', 'CVC_FROM',
+            'BNS_COMMISSION_USD'
+          ]
+        })
+        return res.json({ success: true, message: 'Ok', transaction: transaction || {} })
+      } catch (error) {
+        return res.json({ success: false, message: error }).status(400)
+      }
+    } else {
+      res.json({ success: false, message: 'failed' })
+    }
+  },
+
+  /**
+   *
+   * @param {*} req | Request HTTP Method
+   * @param {*} res | Response HTTP Method
+   * @returns
+   */
+  findByFilter: async (req, res) => {
+    const filter = req.filter
+    let where = {}
+    if (Array.isArray(req.filter)) {
+      where = {
+        [Op.and]: [
+          { IDCUSTOMER: req.params.id },
+          filter[0], // IDBO_USER?
+          filter[1] // TRANSACTION_TYPE?
+        ]
+      }
+    } else {
+      where = {
+        [Op.and]: [
+          { IDCUSTOMER: req.params.id },
+          filter // TRANSACTION_TYPE?
+        ]
+      }
+    }
+
+    try {
+      const database = await initDataBase(sequelizeConfig)
+      const transaction = await database.transaction_history_view.findAll({
+        where,
+        attributes: [
+          'IDTRANSACTION', 'IDAGENT_WALLET', 'AGENT_FULLNAME', 'CUSTOMER_FULLNAME', 'COUNTRY', 'CITY',
+          'CUSTOMER_DNI', 'CREATED_AT', 'TRANSACTION_TYPE',
+          'ORIGIN_CURRENCY', 'AMOUNT_FROM', 'DESTINATION_CURRENCY', 'AMOUNT_TO',
+          'MINER_FEE_USD', 'MINER_FEE_CRYPTO', 'CVC_FROM',
+          'BNS_COMMISSION_USD'
+        ]
+      })
+      return res.json({ success: true, message: 'Ok', transaction: transaction || {} })
+    } catch (error) {
+      return res.json({ success: false, message: error }).status(400)
+    }
+  },
+
+  /**
+   *
+   * @param {*} req | Request HTTP Method
+   * @param {*} res | Response HTTP Method
+   * @returns
+   */
+  findAllPurchases: async (req, res) => {
+    const filter = req.filter || {}
+    try {
+      const database = await initDataBase(sequelizeConfig)
+      const transaction = await database.transaction_history_view.findAll({
+        where: {
+          [Op.and]: [
+            { FK_TYPE: '1' },
+            filter
+          ]
+        },
+        attributes: [
+          'IDTRANSACTION', 'CUSTOMER_FULLNAME', 'COUNTRY', 'CITY',
+          'CUSTOMER_DNI', 'CREATED_AT', 'TRANSACTION_TYPE',
+          'ORIGIN_CURRENCY', 'AMOUNT_FROM', 'DESTINATION_CURRENCY', 'AMOUNT_TO',
+          'MINER_FEE_USD', 'MINER_FEE_CRYPTO', 'CVC_FROM',
+          'BNS_COMMISSION_USD'
+        ]
+      })
+      return res.json({ success: true, message: 'Ok', transaction: transaction || {} })
+    } catch (error) {
+      return res.json({ success: false, message: error }).status(400)
+    }
+  },
+
+  /**
+   *
+   * @param {*} req | Request HTTP Method
+   * @param {*} res | Response HTTP Method
+   * @returns
+   */
+  findAllSales: async (req, res) => {
+    const filter = req.filter || {}
+    try {
+      const database = await initDataBase(sequelizeConfig)
+      const transaction = await database.transaction_history_view.findAll({
+        where: {
+          [Op.and]: [
+            { FK_TYPE: '2' },
+            filter
+          ]
+        },
+        attributes: [
+          'IDTRANSACTION', 'CUSTOMER_FULLNAME', 'COUNTRY', 'CITY',
+          'CUSTOMER_DNI', 'CREATED_AT', 'TRANSACTION_TYPE',
+          'ORIGIN_CURRENCY', 'AMOUNT_FROM', 'DESTINATION_CURRENCY', 'AMOUNT_TO',
+          'MINER_FEE_USD', 'MINER_FEE_CRYPTO', 'CVC_FROM',
+          'BNS_COMMISSION_USD'
+        ]
+      })
+      return res.json({ success: true, message: 'Ok', transaction: transaction || {} })
+    } catch (error) {
+      return res.json({ success: false, message: error }).status(400)
     }
   },
 

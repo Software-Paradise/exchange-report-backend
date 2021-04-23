@@ -10,6 +10,8 @@ module.exports = (app) => {
   app.use('/transactions', router)
 
   router.get('/:id/details', authentication, canView(['EXCHANGE']), transactionController.findOne)
+  router.get('/purchases', authentication, canView(['EXCHANGE']), transactionController.findAllPurchases)
+  router.get('/sales', authentication, canView(['EXCHANGE']), transactionController.findAllSales)
   router.get('/agents', authentication, canView(['EXCHANGE']), transactionController.findAll)
   router.post('/', authentication, canCreate(['EXCHANGE']), transactionController.create)
 }

@@ -9,7 +9,7 @@ module.exports = {
       const database = await initDataBase(sequelizeConfig)
 
       const TABLENAMES = [
-        'agent_wallet', 'customer_wallet', 'agent_info', 'bo_user', 'customer',
+        'transaction_info', 'transaction', 'agent_wallet', 'customer_wallet', 'agent_info', 'bo_user', 'customer',
         'customer', 'portfolio_has_permission', 'portfolio', 'profile', 'modalex',
         'permission', 'commerce', 'transaction_type', 'transaction_status', 'fees'
       ]

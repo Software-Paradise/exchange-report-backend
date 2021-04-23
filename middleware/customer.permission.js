@@ -17,11 +17,32 @@ module.exports = {
     const permission = identifyHttp(req.method)
     if (req.data.id !== undefined && req.data.id !== null) {
       const PERMISSIONS = await verifyPermission(req.data.id, module[0])
+      if (PERMISSIONS.includes(permission[1])) {
+        next()
+      } else {
+        res.status(403)
+        return res.send('Not Allowed')
+      }
+    } else {
+      res.status(401)
+      return res.send('Permission not found')
+    }
+  },
+
+  /**
+   *
+   * @param {String} module | Nombre del Modulo al que solicita Acceso para listar commercios
+   * @returns
+   */
+  canFilter: (module) => async (req, res, next) => {
+    const permission = identifyHttp(req.method)
+    if (req.data.id !== undefined && req.data.id !== null) {
+      const PERMISSIONS = await verifyPermission(req.data.id, module[0])
       if (req.data.rol === 'ROOT') {
-        console.log('soy: ', req.data.rol)
+        req.filter = { TRANSACTION_TYPE: module[1] }
         next()
       } else if (PERMISSIONS.includes(permission[1])) {
-        req.filter = { IDBO_USER: req.data.id }
+        req.filter = [{ IDBO_USER: req.data.id }, { TRANSACTION_TYPE: module[1] }]
         next()
       } else {
         res.status(403)
