@@ -5,6 +5,9 @@ const { PASSWORD_SECRET, ACCESS_TOKEN_SECRET } = require('../config/vars.config'
 const jwt = require('jsonwebtoken')
 const mailService = require('../services/mail.service')
 const { createValidator, loginValidator } = require('../validators/users.validator')
+const path = require('path')
+const base64img = require('../utils/base64')
+
 /**
  * @module authController controlador de registro y autenticacion de usuarios
  */
@@ -48,6 +51,11 @@ const authController = {
             return res.json({ success: false, message: error.errors[0].message }).status(401)
           }
 
+          const pngpath1 = path.resolve('./assets', 'ALYEXCHANGE.png')
+          const pngpath2 = path.resolve('./assets', 'POWERED.png')
+          const MAINLOGO = base64img.base64Sync(pngpath1)
+          const FOOTLOGO = base64img.base64Sync(pngpath2)
+
           const sendData = {
             from: 'test@alyexchange.com',
             to: user.email,
@@ -57,7 +65,9 @@ const authController = {
             PASSWORD: user.password,
             URL: 'http://www.alysistem.com/alyexchange/login',
             COMMERCE: admin.commerce,
-            USERADMIN: admin.useradmin
+            USERADMIN: admin.useradmin,
+            MAINLOGO,
+            FOOTLOGO
           }
 
           await mailService.sendInvitationPDF(sendData)

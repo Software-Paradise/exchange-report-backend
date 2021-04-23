@@ -16,5 +16,23 @@ module.exports = {
       console.log(error)
       return ({ success: false, message: 'Could not generate pdf file' })
     }
+  },
+
+  invoiceHtmlToPdf: async (html) => {
+    const config = pdfConfig.comprobante()
+    try {
+      // const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'], ignoreHTTPSErrors: true, dumpio: false })
+      const browser = await puppeteer.launch({ headless: true })
+      const page = await browser.newPage()
+      await page.setViewport(pdfConfig.viewPort3())
+      await page.setContent(html)
+      await page.pdf(config)
+      await browser.close()
+
+      return ({ success: true, message: 'successfully generated pdf ', name: config.path })
+    } catch (error) {
+      console.log(error)
+      return ({ success: false, message: 'Could not generate pdf file' })
+    }
   }
 }

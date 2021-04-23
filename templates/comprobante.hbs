@@ -1,0 +1,225 @@
+<style type="text/css">
+    
+    *, ::after, ::before {
+        box-sizing: border-box;
+    }
+    
+    body {
+        margin: 0;
+        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 0.15;
+        color: #212529;
+        text-align: left;
+        background-color: #fff; 
+        width: 692px;
+        height: 777px;
+    }
+    
+
+    :root{
+        --font-family-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+    }
+
+    .portrait {
+        width: 7.2in !important;
+        height: 8.1in !important;
+        /* margin-right: 0.2rem !important;
+        margin-left: 0.2rem !important; */
+    }
+
+    .text-info{
+        font-family: Roboto, Arial, Helvetica, sans-serif !important;
+        font-weight: 400;
+        text-align: center;
+        color: white;
+    }
+
+    .card{
+        position: relative; 
+        display: flex; 
+        flex-direction: column; 
+        min-width: 0; 
+        word-wrap: break-word; 
+        background-clip: border-box; 
+        border: 1px solid rgba(0, 0, 0, 0.125); 
+        border-radius: 0.25rem; 
+        background-color: #161d29; 
+        margin: auto 1rem !important;
+    }
+    .card-header{
+        padding: 0.75rem 1.25rem; 
+        margin-bottom: 0; 
+        background-color: rgba(0, 0, 0, 0.03); 
+        border-bottom: 1px solid #fff; 
+        color: white; 
+        text-align: center;
+        font-family: Roboto, Arial, Helvetica, sans-serif !important;
+        font-weight: 400;
+    }
+
+    .card-body{
+        flex: 1 1 auto; 
+        min-height: 1px; 
+        padding: 1.25rem;
+    }
+
+    .content-details{
+        display: flex; 
+        flex-direction: 
+        row; justify-content: 
+        space-evenly;
+    }
+    .left-details{
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+        border-right: 1px solid #b5b5b5; 
+        padding-right: 40px;
+    }
+    .rigth-details{
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center;
+    }
+
+    .title-details{
+        font-family: Roboto, Arial, Helvetica, sans-serif !important;
+        font-weight: 400;
+        color: #b5b5b5;
+    }
+    .title-content{
+        font-family: Roboto, Arial, Helvetica, sans-serif !important;
+        font-weight: 400;
+        color: white;
+    }
+    .card-footer{
+        padding: 0.75rem 1.25rem; 
+        background-color: #161d29; 
+        border-top: 1px solid white;
+    }
+    .container-resume{
+        display: flex; 
+        flex-direction: row; 
+        justify-content: space-around;
+    }
+    .amount-resume{
+        font-family: Roboto, Arial, Helvetica, sans-serif !important;
+        font-weight: 400;
+        color: white;
+        font-size: 0.95rem;
+        font-style: italic;
+    }
+    .container-foot-img{
+        display: flex; 
+        flex-direction: row; 
+        justify-content: center; 
+        padding: 10px; 
+        margin-top: 1rem !important;
+    }
+    .foot-img{
+        height: auto; 
+        width: 30%; 
+        border-style: none;
+    }
+    .credits{
+        display: flex; 
+        flex-direction: column; 
+        align-items: center;
+    }
+    .title-credits{
+        font-family: Roboto, Arial, Helvetica, sans-serif !important;
+        font-weight: 500;
+        color: #b5b5b5; 
+        font-size: 1.1rem; 
+    }
+    .url{
+        font-family: Roboto, Arial, Helvetica, sans-serif !important;
+        font-size: 1.2rem; 
+        color: #01baef;
+    }
+</style>
+
+<body>
+    
+    <div class="portrait" style="background-color: black;">
+        <div style="margin-bottom: 1rem !important;">
+            <p  style="opacity: 0; color: aliceblue;">separador</p>
+        </div>
+        <div style="display: flex; flex-direction: row; justify-content: center; padding: 10px; background-color: #fff;">
+            <img src="{{{MAINLOGO}}}" alt="alyexchange" style="width: 50%; height: auto; border-style: none;">
+        </div>
+        <div style="margin-top: 0.5rem !important; margin-bottom: 1rem !important;">
+            <h2 class="text-info">Estimado/a</h2>
+            <h3 class="text-info">{{CUSTOMER_FULLNAME}}</h3>
+            <h3 class="text-info">Gracias por realizar su transacción con nosotros</h3>
+        </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Detalles de la Transacción</h3>
+                </div>
+                <div class="card-body">
+                   <div class="content-details">
+                        <div class="left-details">
+                            <div>
+                                <h4 class="title-details">Nombre del Cliente:</h4>
+                                <h4 class="title-content">{{CUSTOMER_FULLNAME}}</h4>
+                            </div>
+                            <div>
+                                <h4 class="title-details">Fecha | Hora:</h4>
+                                <h4 class="title-content">{{DATETIME}}</h4>
+                            </div>
+                            <div>
+                                <h4 class="title-details">Moneda:</h4>
+                                <h4 class="title-content">{{ORIGIN_CURRENCY}}</h4>
+                            </div>
+                            <div>
+                                <h4 class="title-details">Comision USD:</h4>
+                                <h4 class="title-content">{{BNS_COMMISSION_USD}}</h4>
+                            </div>
+                        </div>
+                        <div class="rigth-details">
+                            <div>
+                                <h4 class="title-details">Ciudad | Pais</h4>
+                                <h4 class="title-content">{{LOCALITY}}</h4>
+                            </div>
+                            <div>
+                                <h4 class="title-details">Tipo Transaccion</h4>
+                                <h4 class="title-content">{{TRANSACTION_TYPE}}</h4>
+                            </div>
+                            <div>
+                                <h4 class="title-details">Precio al momento</h4>
+                                <h4 class="title-content">{{CURRENT_VALUE}}</h4>
+                            </div>
+                            <div>
+                                <h4 class="title-details">Comision Cripto</h4>
+                                <h4 class="title-content">{{BNS_COMMISSION_CRYPTO}}</h4>
+                            </div>
+                        </div>
+                   </div>
+                </div>
+                <div class="card-footer">
+                    <div class="container-resume">
+                        <div>
+                            <h5 class="amount-resume">Monto (USD) {{EXE_USD}}</h5>
+                        </div>
+                        <div>
+                            <h5 class="amount-resume">Monto (CRIPTO) {{EXE_CRYPTO}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-foot-img">
+                <img src="{{{FOOTLOGO}}}" alt="alyexchange" class="foot-img">
+            </div>
+
+            <div class="credits">
+                <p class="title-credits">Contactanos | Terminos y Condiciones | Preguntas Frecuentes</p>
+                <a href="www.alysystem.com" class="url">www.alysystem.com</a>
+            </div>
+    </div>
+
+</body>

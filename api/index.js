@@ -4,6 +4,7 @@ const auth = require('./routes/auth')
 const users = require('./routes/users')
 const failed = require('./routes/failed')
 const transactions = require('./routes/transaction')
+const customer = require('./routes/customer')
 const express = require('express')
 
 /**
@@ -17,6 +18,7 @@ const routes = () => {
   auth(app)
   users(app)
   transactions(app)
+  customer(app)
   failed(app)
   return app
 }

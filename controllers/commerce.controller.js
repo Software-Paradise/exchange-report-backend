@@ -1,6 +1,6 @@
 const { sequelizeConfig } = require('../config/index')
 const { initDataBase } = require('../models/')
-const { findOneValidator } = require('../validators/commerce.validator')
+const { paramsValidator } = require('../validators/general.validator')
 
 /**
  * @module commerceController Controlador de commercios
@@ -67,7 +67,7 @@ const commerceController = {
    * @returns
    */
   update: async (req, res) => {
-    if (findOneValidator(req.params)) {
+    if (paramsValidator(req.params)) {
       const { id } = req.params
       const { commerce } = req.body
       try {

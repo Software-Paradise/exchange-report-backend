@@ -18,7 +18,8 @@ const config = {
       dialectOptions: {
         multipleStatements: true
       },
-      logging: false
+      logging: false,
+      timezone: '-06:00'
     }
   },
   test: {},
