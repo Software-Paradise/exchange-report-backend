@@ -3,7 +3,7 @@ const { initDataBase } = require('../models/')
 const { createValidator } = require('../validators/transaction.validator')
 const { paramsValidator } = require('../validators/general.validator')
 const { Op } = require('sequelize')
-// const { calprofit } = require('../services/transaction.service')
+const { sendReport } = require('../services/report.service')
 const { storageProcess } = require('../queries/transactions.queries')
 
 module.exports = {
@@ -224,6 +224,7 @@ module.exports = {
         let order = ''
         if (transaction.idtype === 1) order = `C${new Date().getTime()}`
         if (transaction.idtype === 2) order = `V${new Date().getTime()}`
+        if (transaction.idtype === 3) order = `E${new Date().getTime()}`
         transaction.order = order
 
         const dataTransaction = {
@@ -259,7 +260,13 @@ module.exports = {
 
           try {
             const newTransaction = await database.sequelize.query(storageProcess.calculateProfit(), { replacements: rplm })
-            res.json({ success: true, newTransaction })
+            try {
+              const {success, message} = await sendReport(newTransaction[0])
+              res.json({success, message, newTransaction})
+            } catch (error) {
+              res.json({success: false, message: 'Something wrong'})
+            }
+            
           } catch (error) {
             res.json({ success: false, message: error }).status(400)
           }

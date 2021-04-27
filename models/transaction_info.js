@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: { notEmpty: true, isDecimal: true }
     },
     BNS_COMMISSION_CRYPTO: {
-      type: DataTypes.DECIMAL(12, 4),
+      type: DataTypes.DECIMAL(10, 8),
       allowNull: false,
       defaultValue: 0.00,
       validate: { notEmpty: true, isDecimal: true }
@@ -36,10 +36,10 @@ module.exports = (sequelize, DataTypes) => {
       validate: { notEmpty: true, isDecimal: true }
     },
     EXE_CRYPTO: {
-      type: DataTypes.FLOAT(16, 8),
+      type: DataTypes.DECIMAL(12, 8),
       allowNull: false,
       defaultValue: 0.00,
-      validate: { notEmpty: true, isFloat: true }
+      validate: { notEmpty: true, isDecimal: true }
     },
     MINER_FEE_PERCENTAGE: {
       type: DataTypes.DECIMAL(6, 5),
@@ -48,10 +48,10 @@ module.exports = (sequelize, DataTypes) => {
       validate: { notEmpty: true, isDecimal: true }
     },
     MINER_FEE_CRYPTO: {
-      type: DataTypes.FLOAT(16, 8),
+      type: DataTypes.DECIMAL(12, 8),
       allowNull: false,
       defaultValue: 0.00,
-      validate: { notEmpty: true, isFloat: true }
+      validate: { notEmpty: true, isDecimal: true }
     },
     MINER_FEE_USD: {
       type: DataTypes.DECIMAL(12, 4),
@@ -59,14 +59,20 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 0.00,
       validate: { notEmpty: true, isDecimal: true }
     },
+    AGENT_FEE_PERCENTAGE: {
+      type: DataTypes.DECIMAL(3, 2),
+      allowNull: false,
+      defaultValue: 0.00,
+      validate: { notEmpty: true, isDecimal: true }
+    },
     AGENT_PROFIT_USD: {
-      type: DataTypes.DECIMAL(12, 4),
+      type: DataTypes.DECIMAL(10, 4),
       allowNull: false,
       defaultValue: 0.00,
       validate: { notEmpty: true, isDecimal: true }
     },
     BUSINESS_PROFIT_USD: {
-      type: DataTypes.DECIMAL(12, 4),
+      type: DataTypes.DECIMAL(10, 4),
       allowNull: false,
       defaultValue: 0.00,
       validate: { notEmpty: true, isDecimal: true }

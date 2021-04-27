@@ -22,13 +22,18 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.FLOAT(18, 10),
       validate: { isFloat: true }
     },
+    ICON: {
+      allowNull: true,
+      type: DataTypes.BLOB('medium')
+    },
     DISABLED_AT: {
       allowNull: true,
       type: DataTypes.DATE
     },
     IS_ACTIVE: {
       allowNull: false,
-      type: DataTypes.BOOLEAN
+      type: DataTypes.BOOLEAN,
+      defaultValue: 1
     }
   },
   {

@@ -32,13 +32,13 @@ module.exports = (sequelize, DataTypes) => {
       onUpdate: 'CASCADE'
     },
     AMOUNT_FROM: {
-      type: DataTypes.FLOAT(16, 10),
+      type: DataTypes.DECIMAL(14, 8),
       allowNull: false,
       defaultValue: 0.00,
       validate: { notEmpty: true, isFloat: true }
     },
     AMOUNT_TO: {
-      type: DataTypes.FLOAT(16, 10),
+      type: DataTypes.DECIMAL(14, 8),
       allowNull: false,
       defaultValue: 0.00,
       validate: { notEmpty: true, isFloat: true }
