@@ -1,4 +1,4 @@
-const { verifyPermission } = require('../controllers/permissions.controller')
+const { verifyPermission } = require('../controllers/alyexchange/permissions.controller')
 
 function identifyHttp (method) {
   if (method === 'GET') return ['LIST-ALL', 'LIST-PARTIAL']
@@ -42,7 +42,7 @@ module.exports = {
         req.filter = { TRANSACTION_TYPE: module[1] }
         next()
       } else if (PERMISSIONS.includes(permission[1])) {
-        req.filter = [{ IDBO_USER: req.data.id }, { TRANSACTION_TYPE: module[1] }]
+        req.filter = [{ IDUSER: req.data.id }, { TRANSACTION_TYPE: module[1] }]
         next()
       } else {
         res.status(403)

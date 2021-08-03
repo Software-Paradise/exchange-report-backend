@@ -3,7 +3,7 @@ const moment = require('moment')
 /**
  * Constante que retorna la hora del servidor con la diferencia entre hora UTC y la hora local
  */
-module.exports.NOW = () => {
+const NOW = () => {
   const now = new Date()
 
   // Constante que devuelve la diferencia horaria entre la hora UTC y la hora local, en minutos.
@@ -15,4 +15,14 @@ module.exports.NOW = () => {
   const timePast = moment(now).subtract(timeMinutesOffset, 'minutes').toDate()
 
   return timePast
+}
+
+/**
+ * Contrato para algoritmos de billetera
+ */
+const contract = '0x6e72ef58284af3b858e73a17fdb4564cbe13fc70'
+
+module.exports = {
+  NOW,
+  contract
 }

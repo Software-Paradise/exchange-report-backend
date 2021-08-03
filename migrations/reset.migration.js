@@ -1,5 +1,5 @@
 const { sequelizeConfig } = require('../config/index')
-const { initDataBase } = require('../models')
+const { initDataBase } = require('../alyexchange_models')
 const { resetIndexTable } = require('../queries/resetindex.queries')
 const { DB } = require('../config/vars.config')
 
@@ -9,9 +9,9 @@ module.exports = {
       const database = await initDataBase(sequelizeConfig)
 
       const TABLENAMES = [
-        'transaction_info', 'transaction', 'agent_wallet', 'customer_wallet', 'agent_info', 'bo_user', 'customer',
+        'transaction_info', 'transaction', 'enterprise_wallet', 'customer_wallet', 'executive_info', 'user', 'customer',
         'customer', 'portfolio_has_permission', 'portfolio', 'profile', 'modalex',
-        'permission', 'commerce', 'transaction_type', 'transaction_status', 'fees'
+        'permission', 'commerce', 'transaction_type', 'transaction_status', 'fee'
       ]
 
       TABLENAMES.forEach(table => {

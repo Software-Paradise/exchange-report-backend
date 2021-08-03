@@ -1,0 +1,12 @@
+{
+    "type": "service_account",
+    "project_id": "alypay",
+    "private_key_id": "896c29d61ad6acb334708632e48c314d4a34dd1e",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDOr8QCJdYqfg4o\n8EDnvBbM2Jpo9DPNMVOD7hK7Xx4hCzF6eseIkf13MwLgKZegUj2Wkdss3+U6FGYY\nsW8RZiDbq2Y2aZizwq/48iYKw3qM9JzFwgWeuC74jPRRtgkUzqGJYzUWwHJ0dUdq\nyWUEBJoASglYWrnIxDkHqfXL1IaJbsLc4LV7DghGy8RFdVGbeoG3z6nO2VJSfWQv\nAQIdM48ULVKYsFW70bsHjRHOi2VwcniR/cEy+dg5+Elcnf6xcsmAYSFCX5y/VPRm\neRbBgAIXIwUPQ/1aZA/hsAN05NuRiDG/ps0gh1tDJA5DDjKr0x155GzDwCiPfSW+\nAS8lJzH5AgMBAAECggEAGqj+Yf6KbQm8ftharumKkVrBNBeH1QhvSt27KdMfmkiM\n1c0fjsSyCp2YWdzTk5j4G8Ntn5CzyzWVY8sDVh2z0FIACbW+PjW3KCfn80x6stLc\no/+eZPZCDMp1u1J9QmNS39tdnjUtrkrwbtxSfN2xFad3JB/zxetVpeDs9SFRR0m4\nJhuIBjYj5oAS86drkrwV+lUiux8BZatJ4AAEIEL5/+tPallUTCVoildwwI/spM9z\nsWLAWpHLOrC+45tTXVUJgj/DXsmJp5mH+6m84OfdWMLxQhmjBd9ka7mPHezp5zqL\nPyEKRd7gg6BWWc9LM35D4nalGH37v/ku+PXnq/+ShwKBgQD6sT69GHwHUHVxLK51\nzWwXiybX41yD2ONE12PhGp7BAEBEGlZrYuRFybrfwZHCHwsGXQkPvVkIq5Zj2C7F\nzfAm2gMI+8FSoOSRbp3agvJEQsDRlh05KA8Vq1b7sgfFQczGcmZERAQQCAdWaDTP\nTBK8qjBlr2Xrec/m9HZl0sUdEwKBgQDTEAJEZ2kiDsLv6XpmyRXEZBMRLIdnt+ti\n6SS/u05vDUy6A3BhlrMFSqlqi0vxF/QoTisa5XHgsm956PfzxwRElMuFHNCjJc6v\ns0ILwaSNZxzWJ2ehKJVSD4Zx55iqzSbs+Dz20qLOoU7G9jiNnE3R8WCcR/+QI1JG\nnHQ4qU3SQwKBgDMT9A2BNJwk55jkmrND5JczcfmgyJPQmBXJsP8Hdnsqeu2lVCBT\nKOGTRbEbdoBP5OYqBJOhZ8eddmnnfTguSpUP7HhjGzOjto5vNFh2P7hqxXCunkur\n/s7Sd0mXL4AgdQGmA3I7TXyatiwD1Wa7QEIShwPg5epBinurKYh7lk/jAoGAX12g\naKABFO5ujlCEieTZ/P7qzpu8ItUremm1vRw4+FyeCn57TNz2zrFJk2aVTb5xB7Uq\nLOD3b3uwevkU8AVAnGxO+Tpn2w++MA1jDkTUwT+R/AGaBWt87LMvIFBw3twLdo9D\nnJLYFV01ZxjhvLqfPvk9md++TbZn+pe+u8tj6lkCgYEAr//PA4720O7jSFmDs9GV\nn9F+LL2WkJsgWKrAj0uMpWeZqKSPVpKRTYC2XxQI3PNDVfUG25kkCHZsyvFRXtKh\nWhD68kFBa1qH1i8HvDy2n5S7lEBAZJcl8UITUcfPJuABMRJ0N8Rrz8X5OzzagAOg\nuHlZCCSHSARXwefSMRgXXjw=\n-----END PRIVATE KEY-----\n",
+    "client_email": "files-alypay-bucket@alypay.iam.gserviceaccount.com",
+    "client_id": "111927332031722993474",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/files-alypay-bucket%40alypay.iam.gserviceaccount.com"
+  }
