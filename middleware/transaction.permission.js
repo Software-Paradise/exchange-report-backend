@@ -1,4 +1,4 @@
-const { verifyPermission } = require('../controllers/permissions.controller')
+const { verifyPermission } = require('../controllers/alyexchange/permissions.controller')
 
 function identifyHttp (method) {
   if (method === 'GET') return ['LIST-ALL', 'LIST-PARTIAL']

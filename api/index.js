@@ -1,26 +1,11 @@
-const test = require('./routes/test')
-const commerce = require('./routes/commerces')
-const auth = require('./routes/auth')
-const users = require('./routes/users')
-const failed = require('./routes/failed')
-const transactions = require('./routes/transaction')
-const customer = require('./routes/customer')
-const express = require('express')
+const alyexchangeRouter = require('./alyexchange_routes/index')
+const alypayRouter = require('./alypay_routes/index')
 
-/**
- *
- * @returns - Instancia de Express
- */
-const routes = () => {
-  const app = express()
-  test(app)
-  commerce(app)
-  auth(app)
-  users(app)
-  transactions(app)
-  customer(app)
-  failed(app)
-  return app
+const routes = {
+    
+    alyexchange: alyexchangeRouter(),
+    alypay: alypayRouter(),
+
 }
 
 module.exports = routes
